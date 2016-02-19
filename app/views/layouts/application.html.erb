@@ -8,20 +8,27 @@
 </head>
 <body>
 
-  <% if signed_in? %>
-    Signed in as: <%= current_user.email %>
-    <%= button_to 'Sign out', sign_out_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Sign in', sign_in_path %>
-  <% end %>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <%= link_to 'Clear Sky', root_path, class: 'navbar-brand' %>
+      </div>
+      <div id="navbar">
 
-  <div id="flash">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
     <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
+      <div class="alert alert-<%= key %>">
+        <%= value %>
+      </div>
     <% end %>
+
+    <%= yield %>
   </div>
 
-  <%= yield %>
 
 </body>
 </html>
