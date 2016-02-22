@@ -33,6 +33,7 @@ gem 'bootstrap-sass'
 gem "figaro"
 
 # facebook login
+gem 'omniauth'
 gem 'omniauth-facebook'
 
 # Use ActiveModel has_secure_password

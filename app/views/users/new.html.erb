@@ -1,11 +1,24 @@
 <div class="col-sm-6 col-sm-offset-3" id="clearance" class="sign-up">
-  <h2><%= t(".title") %></h2>
+  <center>
+    <h2><%= t(".title") %></h2>
+  </center>
 
   <%= form_for @user do |form| %>
     <%= render partial: '/users/form', object: form %>
 
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit class: "btn btn-success" %>
 
-    <%= link_to t(".sign_in"), sign_in_path, class: "btn btn-link" %>
+    <div class="pull-right">
+      <%= link_to t(".sign_in"), sign_in_path, class: "btn btn-default" %>
+    </div>
   <% end %>
+
+  <hr/>
+  <center>
+    <h4>or</h4>
+  </center>
+  <div class="col-sm-8 col-sm-offset-2">
+    <%= link_to "Sign up via Facebook", "/auth/facebook", class: "btn btn-primary btn-block" %>
+  </div>
+
 </div>
