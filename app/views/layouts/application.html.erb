@@ -12,11 +12,10 @@
 
   <div class="container">
 
-    <div class="col-sm-6 col-sm-offset-3">
-      <%= flash_messages %>
-    </div>
+    <%= render partial: '/layouts/flash' %>
 
     <%= yield %>
+
   </div>
 
 </body>
