@@ -29,6 +29,9 @@ gem 'clearance'
 # bootstrap
 gem 'bootstrap-sass'
 
+# secure configure rails app
+gem "figaro"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
