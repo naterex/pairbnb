@@ -10,9 +10,11 @@
   </div>
 
   <%= form.submit class: "btn btn-primary" %>
-
-  <% if Clearance.configuration.allow_sign_up? %>
-    <%= link_to t(".sign_up"), sign_up_path, class: "btn btn-link" %>
-  <% end %>
   <%= link_to t(".forgot_password"), new_password_path, class: "btn btn-link" %>
+
+  <div class="pull-right">
+    <% if Clearance.configuration.allow_sign_up? %>
+      <%= link_to t(".sign_up"), sign_up_path, class: "btn btn-default" %>
+    <% end %>
+  </div>
 <% end %>

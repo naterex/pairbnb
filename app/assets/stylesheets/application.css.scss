@@ -16,3 +16,12 @@
 
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
+
+ .navbar-search-centered {
+   position: absolute;
+   left: 25%;
+   display: block;
+   width: 600px;
+   text-align: center;
+   background-color: transparent;
+}
