@@ -10,13 +10,18 @@
       </button>
     </div><!-- .navbar-header -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if signed_in? %>
+        <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-2 col-lg-offset-4">
+          <%= link_to '<i class="glyphicon glyphicon-home"></i> Create new listing'.html_safe, new_user_listing_path(current_user), class: "btn btn-primary navbar-btn btn-block" %>
+        </div>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if signed_in? %>
           <li><%= link_to current_user.email %></li>
-          <li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
+          <%= link_to '<i class="glyphicon glyphicon-log-out"></i> Logout'.html_safe, sign_out_path, method: :delete, class: "btn btn-default navbar-btn" %>
         <% else %>
-          <li><%= link_to 'Sign In', sign_in_path %></li>
-          <li><%= link_to t(".sign_up"), sign_up_path %></li>
+          <li><%= link_to '<i class="glyphicon glyphicon-log-in"></i> Login'.html_safe, sign_in_path %></li>
+          <li><%= link_to '<i class="glyphicon glyphicon-user"></i> Signup'.html_safe, sign_up_path %></li>
         <% end %>
       </ul>
     </div><!-- .navbar-collapse -->

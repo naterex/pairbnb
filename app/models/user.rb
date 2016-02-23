@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, unless: :signup_with_facebook?
 
   has_many :authentications, dependent: :destroy
+  has_many :listings, dependent: :destroy
 
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|

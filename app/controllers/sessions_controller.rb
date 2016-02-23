@@ -29,7 +29,8 @@ class SessionsController < Clearance::SessionsController
       # @notice = "Signed in!" # remove flash_message for sign in
     else
       user = User.create_with_auth_and_hash(authentication,auth_hash)
-      @next = edit_user_path(user)
+      @next = root_url
+      # @next = edit_user_path(user) # remove edit_user_path redirect b/c doesn't exist
       # @notice = "User created - confirm or edit details..."  # remove flash_message for sign up
     end
     sign_in(user)

@@ -37,13 +37,19 @@ body {
   .container-fluid {
     .navbar-header {
       a {
-        // color: white;
+        color: $red;
+      }
+      a:hover {
+        color: $matt-red;
       }
     }
     .navbar-collapse {
       ul li {
         a {
-          // color: white;
+          color: $red;
+        }
+        a:hover {
+          color: $matt-red;
         }
       }
       ul li:hover {
