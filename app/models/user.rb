@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, unless: :signup_with_facebook?
 
   validates_uniqueness_of :email
-  validates_confirmation_of :password
+  validates_confirmation_of :password, unless: :signup_with_facebook?
 
   has_many :authentications, dependent: :destroy
 
@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
     create! do |u|
       u.first_name = auth_hash["info"]["name"]
       u.email = auth_hash["extra"]["raw_info"]["email"]
-
       u.authentications<<(authentication)
     end
+    byebug
   end
 
   def signup_with_facebook?
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def fb_token
-    x = self.authentications.where(:provider => :facebook).first
+    x = self.authentications.where(provider: :facebook).first
     return x.token unless x.nil?
   end
 
