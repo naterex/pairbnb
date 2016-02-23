@@ -17,11 +17,126 @@
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
 
- .navbar-search-centered {
-   position: absolute;
-   left: 25%;
-   display: block;
-   width: 600px;
-   text-align: center;
-   background-color: transparent;
+ $red: #FF5A5F;
+ $matt-red: #FC9396;
+ $blue: #30425A;
+ $grey: #F5F5F5;
+ $dark-grey: #565A5C;
+
+html {
+  position: relative;
+  min-height: 100%;
 }
+
+body {
+  margin-bottom: 100px; /* same height as footer */
+}
+
+.navbar {
+  margin-bottom: 0;
+  .container-fluid {
+    .navbar-header {
+      a {
+        // color: white;
+      }
+    }
+    .navbar-collapse {
+      ul li {
+        a {
+          // color: white;
+        }
+      }
+      ul li:hover {
+        background: transparent;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.jumbotron {
+  background: $dark-grey;
+  // background-image:url('http://goo.gl/04j7Nn');
+  height: 300px;
+  width: 100%;
+  // position: absolute;
+  // top:0;
+  // z-index: -100;
+  text-align: center;
+  .container {
+    h1 {
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+    }
+    p {
+      color: white;
+      font-size: 20px;
+    }
+    .col-sm-6, .col-md-6{
+      form {
+        .input-group {
+          .input-group-btn {
+            button {
+              color: white;
+              background: $red;
+              span {
+                color: white;
+              }
+            }
+            button:hover {
+              background: $matt-red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.neighborhood-guides {
+  border-bottom: 1px solid #dbdbdb;
+  // position: relative;
+  // top: 300px;
+  h2 {
+    color: #393c3d;
+    font-size: 24px;
+  }
+  p {
+    margin-bottom: 13px;
+    font-size: 15px;
+  }
+}
+
+.learn-more {
+  background: $grey;
+  padding-bottom: 3rem;
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  a {
+    color: #00b0ff;
+  }
+}
+
+footer {
+  background: $blue;
+  width: 100%;
+  bottom: 0;
+  height: 100px;
+  position: absolute; /* cannot use relative, will float up if no content */
+  padding: 3rem 0 0 0;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  a {
+    color: white;
+    font-weight: bold;
+  }
+  a:hover {
+    color: #ecf0f1;
+    text-decoration: none;
+  }
+}
+

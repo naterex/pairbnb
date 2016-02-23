@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # root 'listings#index'
 
   constraints Clearance::Constraints::SignedIn.new do
-    root to: 'listings#test', as: :signed_in_root
+    root to: 'listings#index', as: :signed_in_root
   end
 
   constraints Clearance::Constraints::SignedOut.new do

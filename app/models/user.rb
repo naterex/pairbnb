@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_presence_of :password, unless: :signup_with_facebook?
 
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, unless: :signup_with_facebook?
   validates_confirmation_of :password, unless: :signup_with_facebook?
 
   has_many :authentications, dependent: :destroy
@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
       u.email = auth_hash["extra"]["raw_info"]["email"]
       u.authentications<<(authentication)
     end
-    byebug
   end
 
   def signup_with_facebook?
