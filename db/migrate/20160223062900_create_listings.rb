@@ -3,13 +3,13 @@ class CreateListings < ActiveRecord::Migration
     create_table :listings do |t|
       t.timestamps null: false
       t.integer :user_id
+      t.string :title
+      t.text :about
       t.string :room_type
       t.string :property_type
       t.integer :bedrooms
       t.integer :bathrooms
       t.integer :guests
-      t.string :title
-      t.text :about
       t.string :address
       t.string :city
       t.string :state

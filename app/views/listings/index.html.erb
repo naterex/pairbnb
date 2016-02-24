@@ -1,70 +1,18 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1>Find a place to stay.</h1>
-    <p>Rent from people in over 34,000 cities and 192 countries.</p>
-    <br>
-    <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-      <form role="search">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Where do you want to go?">
-          <div class="input-group-btn">
-              <button class="btn" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span> Search&nbsp;&nbsp;&nbsp;&nbsp;</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+<div class="row">
+  <div class="col-sm-7 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" id="listing">
+  <center>
+    <h2><%= t(".my_listings") %></h2>
+  </center>
 
-<div class="neighborhood-guides">
-  <div class="container">
-    <h2>Neighborhood Guides</h2>
-    <p>Not sure where to stay? We've created neighborhood guides for cities all around the world.</p>
+  <% @listings.each do |listing| %>
     <div class="row">
-      <div class="col-md-4">
-        <div class="thumbnail">
-          <img src="http://placehold.it/350x150">
-        </div>
-        <div class="thumbnail">
-          <img src="http://placehold.it/350x150">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="thumbnail">
-          <img src="http://placehold.it/350x150">
-        </div>
-        <div class="thumbnail">
-          <img src="http://placehold.it/350x150">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="thumbnail">
-          <img src="http://placehold.it/350x338">
-        </div>
-      </div>
+      <h3>
+        <%= link_to listing.title, listing_path(listing) %>
+      </h3>
     </div>
+
+  <% end %>
+
+
   </div>
 </div>
-
-<div class="learn-more">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <h3>Travel</h3>
-        <p>From apartments and rooms to treehouses and boats: stay in unique spaces in 192 countries.</p>
-        <p><a href="#">See how to travel on Airbnb</a></p>
-      </div>
-      <div class="col-md-4">
-        <h3>Host</h3>
-        <p>Renting out your unused space could pay your bills or fund your next vacation.</p>
-        <p><a href="#">Learn more about hosting</a></p>
-      </div>
-      <div class="col-md-4">
-        <h3>Trust and Safety</h3>
-        <p>From Verified ID to our worldwide customer support team, we've got your back.</p>
-        <p><a href="#">Learn about trust at Airbnb</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-

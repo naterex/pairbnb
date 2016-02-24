@@ -126,12 +126,17 @@ body {
   }
 }
 
+#listing {
+  padding-bottom: 20px; /* div should have .row class wrapper */
+}
+
 footer {
   background: $blue;
-  width: 100%;
-  bottom: 0;
-  height: 100px;
   position: absolute; /* cannot use relative, will float up if no content */
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 100px;
   padding: 3rem 0 0 0;
   text-align: center;
   font-weight: bold;

@@ -1,0 +1,59 @@
+<div class="form-group ">
+  <%= form.label :title %>
+  <%= form.text_field :title, type: "text", class: "form-control", placeholder: "listing title", required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :about %>
+  <%= form.text_area :about, type: "text", class: "form-control", rows: "4", placeholder: "description of property", required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :property_type %>
+  <%= form.select :property_type, ['Apartment', 'House', 'Bed & Breakfast'], required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :room_type %>
+  <%= form.select :room_type, ['Entire home/apt', 'Private room', 'Shared room'], required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :bedrooms %>
+  <%= form.select :bedrooms, [1,2,3,4,5], required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :bathrooms %>
+  <%= form.select :bathrooms, [1,2,3,4,5], required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :guests %>
+  <%= form.select :guests, [1,2,3,4,5,6,7,8], class: "form-control", required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :address %>
+  <%= form.text_area :address, type: "text", class: "form-control", placeholder: "unit number and street address", required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :city %>
+  <%= form.text_field :city, type: "text", class: "form-control", placeholder: "city", required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :state %>
+  <%= form.text_field :state, type: "text", class: "form-control", placeholder: "state/province", required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :zip %>
+  <%= form.text_field :zip, type: "text", placeholder: "zipcode", class: "form-control" %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :country %>
+  <%= form.text_field :country, type: "text", class: "form-control", placeholder: "country", required: true %>
+</div>
