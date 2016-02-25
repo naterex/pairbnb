@@ -4,8 +4,12 @@
       <h2><%= @listing.title %></h2>
 
       <div class="row">
-        <% @listing.photos.each_with_index do |photo| %>
-          <%= image_tag photo.url(:thumb).to_s, class: "img-rounded img-thumbnail img-responsive" %>
+        <% if @listing.photos? %>
+          <% @listing.photos.each_with_index do |photo| %>
+            <%= image_tag photo.url(:thumb).to_s, class: "img-rounded img-thumbnail img-responsive" %>
+          <% end %>
+        <% else %>
+          <%= image_tag "http://placehold.it/350x250", class: "img-rounded img-thumbnail img-responsive" %>
         <% end %>
       </div>
       <br>

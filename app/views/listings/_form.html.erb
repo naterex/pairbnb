@@ -5,13 +5,22 @@
 
 <div class="form-group ">
   <%= form.label :about %>
-  <%= form.text_area :about, type: "text", class: "form-control", rows: "4", placeholder: "description of property", required: true %>
+  <%= form.text_area :about, type: "text", class: "form-control", rows: "6", placeholder: "description of property", required: true %>
 </div>
 
 <div class="form-group ">
   <%= form.label :photos %>
+  <% if @listing.photos? %>
+    <br>
+    <% @listing.photos.each_with_index do |photo| %>
+      <%= image_tag photo.url(:small).to_s, class: "img-rounded img-thumbnail img-responsive" %>
+    <% end %>
+  <% end %>
   <%= form.file_field :photos, multiple: true %>
-  <p></p>
+  <%= form.hidden_field :photos_cache %>
+  <br>
+    <%= form.check_box :remove_photos %>
+    <%= form.label :remove_photos %>
 </div>
 
 <br>

@@ -32,6 +32,7 @@ class ListingsController < ApplicationController
   end
 
   def update
+
     if @listing.update(listing_params)
       flash.now[:success] = "Successfully updated listing."
       redirect_to @listing
@@ -55,7 +56,7 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    params.require(:listing).permit(:title, :about, :room_type, :property_type, :bedrooms, :bathrooms, :guests, :address, :city, :state, :zip, :country, {photos: []} )
+    params.require(:listing).permit(:title, :about, :room_type, :property_type, :bedrooms, :bathrooms, :guests, :address, :city, :state, :zip, :country, {photos: []}, :photos_cache, :remove_photos )
   end
 
 

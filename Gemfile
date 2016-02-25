@@ -39,6 +39,7 @@ gem 'omniauth-facebook'
 # image uploading
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'rmagick'
+gem 'fog-aws'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
