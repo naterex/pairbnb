@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings.build(listing_params)
-    byebug
+
     if @listing.save
       redirect_to @listing
     else
@@ -18,7 +18,6 @@ class ListingsController < ApplicationController
   end
 
   def show
-    # @listing = Listing.find(params[:id])
   end
 
   def homepage
@@ -30,7 +29,6 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    # @listing = Listing.find(params[:id])
   end
 
   def update

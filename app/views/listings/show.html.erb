@@ -1,66 +1,66 @@
 <div class="row">
-  <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-9 col-lg-offset-2" id="listing">
+  <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-9 col-lg-offset-1" id="listing">
     <center>
       <h2><%= @listing.title %></h2>
-    </center>
 
-    <div class="row">
-      <% @listing.photos.each_with_index do |photo| %>
-        <%= image_tag photo.url(:thumb).to_s, class: "img-rounded img-thumbnail img-responsive" %>
-      <% end %>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-9 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1 ">
-        <table class="table">
-          <tbody>
-            <tr>
-              <td>About</td>
-              <td><%= @listing.about %></td>
-            </tr>
-            <tr>
-              <td><%= @listing.property_type %></td>
-              <td><%= @listing.room_type %></td>
-            </tr>
-            <tr>
-              <td>Property</td>
-              <td>
-                <%= @listing.bedrooms %> bedrooms<br>
-                <%= @listing.bathrooms %> baths<br>
-                <%= @listing.guests %> guests
-              </td>
-            </tr>
-            <tr>
-              <td>Amenities</td>
-              <td>
-                AMENITIES GO HERE<br>
-                AMENITIES GO HERE<br>
-                AMENITIES GO HERE
-              </td>
-            </tr>
-            <tr>
-              <td>Address</td>
-              <td>
-                <%= @listing.address %><br>
-                <%= @listing.city %>, <%= @listing.state %><br>
-                <%= @listing.zip %><br>
-                <%= @listing.country %>
-              </td>
-            <tr>
-          </tbody>
-        </table>
+      <div class="row">
+        <% @listing.photos.each_with_index do |photo| %>
+          <%= image_tag photo.url(:thumb).to_s, class: "img-rounded img-thumbnail img-responsive" %>
+        <% end %>
       </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 ">
-
-        <%= link_to t(".edit_listing"), edit_listing_path, class: "btn btn-success" %>
-
-        <div class="pull-right">
-            <%= link_to t(".delete_listing"), listing_path, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+      <br>
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>About</td>
+                <td><%= @listing.about %></td>
+              </tr>
+              <tr>
+                <td><%= @listing.property_type %></td>
+                <td><%= @listing.room_type %></td>
+              </tr>
+              <tr>
+                <td>Property</td>
+                <td>
+                  <%= @listing.bedrooms %> bedrooms<br>
+                  <%= @listing.bathrooms %> baths<br>
+                  <%= @listing.guests %> guests
+                </td>
+              </tr>
+              <tr>
+                <td>Amenities</td>
+                <td>
+                  AMENITIES GO HERE<br>
+                  AMENITIES GO HERE<br>
+                  AMENITIES GO HERE
+                </td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>
+                  <%= @listing.address %><br>
+                  <%= @listing.city %>, <%= @listing.state %><br>
+                  <%= @listing.zip %><br>
+                  <%= @listing.country %>
+                </td>
+              <tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 ">
+
+          <%= link_to t(".edit_listing"), edit_listing_path, class: "btn btn-success" %>
+
+          <div class="pull-right">
+              <%= link_to t(".delete_listing"), listing_path, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    </center>
   </div>
 </div>
