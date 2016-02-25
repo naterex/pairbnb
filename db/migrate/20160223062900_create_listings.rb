@@ -15,6 +15,7 @@ class CreateListings < ActiveRecord::Migration
       t.string :state
       t.string :zip
       t.string :country
+      t.json :photos
     end
 
     add_index :listings, :city

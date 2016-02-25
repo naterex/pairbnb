@@ -37,7 +37,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 # image uploading
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'rmagick'
 
 # Use ActiveModel has_secure_password

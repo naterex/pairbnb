@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225005234) do
+ActiveRecord::Schema.define(version: 20160223062900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,30 +26,34 @@ ActiveRecord::Schema.define(version: 20160225005234) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.integer  "user_id",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.string   "room_type",     null: false
-    t.string   "property_type", null: false
-    t.integer  "bedrooms",      null: false
-    t.integer  "bathrooms",     null: false
-    t.integer  "guests",        null: false
-    t.string   "title",         null: false
-    t.text     "about",         null: false
-    t.string   "address",       null: false
-    t.string   "city",          null: false
-    t.string   "state",         null: false
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "about"
+    t.string   "room_type"
+    t.string   "property_type"
+    t.integer  "bedrooms"
+    t.integer  "bathrooms"
+    t.integer  "guests"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
     t.string   "zip"
-    t.string   "country",       null: false
-    t.string   "photo"
+    t.string   "country"
+    t.json     "photos"
   end
+
+  add_index "listings", ["city"], name: "index_listings_on_city", using: :btree
+  add_index "listings", ["country"], name: "index_listings_on_country", using: :btree
+  add_index "listings", ["state"], name: "index_listings_on_state", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "first_name",                     null: false
+    t.string   "first_name"
     t.string   "last_name"
-    t.string   "email",                          null: false
+    t.string   "email"
     t.string   "encrypted_password", limit: 128
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128, null: false

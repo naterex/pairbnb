@@ -10,10 +10,9 @@
 
 <div class="form-group ">
   <%= form.label :photos %>
-  <%= form.file_field :photo%>
+  <%= form.file_field :photos, multiple: true %>
   <p></p>
-  <%= form.label :remote_photo_url, "or photo URLs" %>
-  <%= form.text_field :remote_photo_url, class: "form-control", placeholder: "http://..." %>
+
 </div>
 
 <div class="row">
