@@ -9,30 +9,52 @@
 </div>
 
 <div class="form-group ">
-  <%= form.label :property_type %>
-  <%= form.select :property_type, ['Apartment', 'House', 'Bed & Breakfast'], required: true %>
+  <%= form.label :photos %>
+  <%= form.file_field :photo%>
+  <p></p>
+  <%= form.label :remote_photo_url, "or photo URLs" %>
+  <%= form.text_field :remote_photo_url, class: "form-control", placeholder: "http://..." %>
 </div>
 
-<div class="form-group ">
-  <%= form.label :room_type %>
-  <%= form.select :room_type, ['Entire home/apt', 'Private room', 'Shared room'], required: true %>
-</div>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="form-group ">
+      <%= form.label :property_type %>
+      <%= form.select :property_type, ['Apartment', 'House', 'Bed & Breakfast'], required: true %>
+    </div>
+  </div>
 
-<div class="form-group ">
-  <%= form.label :bedrooms %>
-  <%= form.select :bedrooms, [1,2,3,4,5], required: true %>
+  <div class="col-xs-6">
+    <div class="form-group ">
+      <%= form.label :room_type %>
+      <%= form.select :room_type, ['Entire home/apt', 'Private room', 'Shared room'], required: true %>
+    </div>
+  </div>
 </div>
+<br>
+<div class="row">
+  <div class="col-xs-4">
 
-<div class="form-group ">
-  <%= form.label :bathrooms %>
-  <%= form.select :bathrooms, [1,2,3,4,5], required: true %>
+    <div class="form-group ">
+      <%= form.label :bedrooms %>
+      <%= form.select :bedrooms, [1,2,3,4,5], required: true %>
+    </div>
+  </div>
+  <div class="col-xs-4">
+
+    <div class="form-group ">
+      <%= form.label :bathrooms %>
+      <%= form.select :bathrooms, [1,2,3,4,5], required: true %>
+    </div>
+  </div>
+  <div class="col-xs-4">
+
+    <div class="form-group ">
+      <%= form.label :guests %>
+      <%= form.select :guests, [1,2,3,4,5,6,7,8], class: "form-control", required: true %>
+    </div>
+  </div>
 </div>
-
-<div class="form-group ">
-  <%= form.label :guests %>
-  <%= form.select :guests, [1,2,3,4,5,6,7,8], class: "form-control", required: true %>
-</div>
-
 <div class="form-group ">
   <%= form.label :address %>
   <%= form.text_area :address, type: "text", class: "form-control", placeholder: "unit number and street address", required: true %>

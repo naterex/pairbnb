@@ -14,4 +14,6 @@ class Listing < ActiveRecord::Base
   validates_presence_of :country
 
   belongs_to :user
+  mount_uploader :photo, PhotoUploader
+
 end
