@@ -11,12 +11,12 @@
     </div><!-- .navbar-header -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <% if signed_in? %>
-        <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-2 col-lg-offset-4">
-          <%= link_to '<i class="glyphicon glyphicon-home"></i> Create new listing'.html_safe, new_listing_path, class: "btn btn-primary navbar-btn btn-block" %>
-        </div>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if signed_in? %>
+          <li>
+            <%= link_to '<i class="glyphicon glyphicon-home"></i> Create new listing'.html_safe, new_listing_path %>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
