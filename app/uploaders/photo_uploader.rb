@@ -13,7 +13,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{mounted_as}/#{model.class.to_s.underscore}/#{model.id}"
+    # "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -22,6 +23,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  # end
+
+  # Add a white list of extensions which are allowed to be uploaded.
+  # For images you might use something like this:
+  # def extension_white_list
+  #   %w(jpg jpeg gif png)
   # end
 
   def extension_whitelist
@@ -36,8 +43,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
     ['application/text', 'application/json']
   end
 
-  # Process uploaded image would be scaled to be no larger than 800 by 800 pixels
-  process :resize_to_fit => [800, 800]
+  # Process uploaded image would be scaled to be no larger than 400 by 400 pixels
+  process :resize_to_fit => [400, 400]
   #
   # def scale(width, height)
   #   # do something
@@ -45,18 +52,14 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
+    # no bigger than [x,y] dimensions
     process :resize_to_fill => [350, 250]
   end
 
-  version :small do
+  version :small, from_version: :thumb do
+    # fills exactly [x,y] dimensions
     process :resize_to_fill => [250, 150]
   end
-
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

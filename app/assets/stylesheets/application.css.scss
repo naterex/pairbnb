@@ -131,6 +131,14 @@ body {
 
 #listing, #my_listings {
   padding-bottom: 2rem; /* div should have .row class wrapper */
+  a {
+    text-decoration: none;
+  }
+  h3 {
+    a {
+      text-decoration: none;
+    }
+  }
 }
 
 footer {
