@@ -1,18 +1,24 @@
 <div class="row">
   <center>
-    <h2><%= t(".my_listings") %></h2>
-    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-8 col-lg-offset-2" id="my_listings">
-      <% @listings.each do |listing| %>
-        <div class="col-sm-6 col-md-5 col-lg-4" id="my_listings">
-          <h3>
-            <%= link_to listing.title, listing_path(listing) %>
-          </h3>
-          <% if listing.photos? %>
-            <%= image_tag listing.photos[0].url(:thumb).to_s, class: "img-rounded img-responsive" %>
-          <% else %>
-            <%= image_tag "http://placehold.it/350x250", class: "img-rounded img-responsive" %>
-          <% end %>
-        </div>
+    <h2><%= @index_title %></h2>
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-8 col-lg-offset-2">
+
+      <% if @listings.count == 0 %>
+        <h3>No listings found, <%= link_to "click here to search again.", root_path %></h3>
+      <% else %>
+        <% @listings.each do |listing| %>
+          <div class="col-sm-6 col-md-5 col-lg-4" id="my_listings">
+            <h3>
+              <%= link_to listing.title, listing_path(listing) %>
+            </h3>
+            <% if listing.photos? %>
+              <%= link_to image_tag(listing.photos[0].url(:thumb).to_s, class: "img-rounded img-responsive"), listing_path(listing) %>
+            <% else %>
+              <%= link_to image_tag("http://placehold.it/350x250", class: "img-rounded img-responsive"), listing_path(listing) %>
+            <% end %>
+            <h5><%= listing.city %>, <%= listing.country %></h5>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </center>

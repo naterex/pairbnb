@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # root 'listings#index'
 
   constraints Clearance::Constraints::SignedIn.new do
     root to: 'listings#homepage', as: :signed_in_root
@@ -9,10 +8,10 @@ Rails.application.routes.draw do
     root to: 'listings#homepage'
   end
 
+  resources :listings
+
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]
-
-  resources :listings
 
   resources :users,
     only: [:create, :show, :edit, :update, :destroy] do

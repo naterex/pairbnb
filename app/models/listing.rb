@@ -16,4 +16,9 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   mount_uploaders :photos, PhotoUploader
 
+  def self.search(query)
+    where(["city ilike ? or country ilike ? or zip ilike ? or state ilike ?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"])
+  end
+
+
 end

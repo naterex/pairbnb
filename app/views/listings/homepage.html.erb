@@ -4,14 +4,16 @@
     <p>Rent from people in over 34,000 cities and 192 countries.</p>
     <br>
     <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-      <form role="search">
+
+      <%= form_tag(listings_path, method: "get", id: "search-form", enforce_utf8: false) do %>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Where do you want to go?">
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Where do you want to go?" %>
           <div class="input-group-btn">
               <button class="btn" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span> Search&nbsp;&nbsp;&nbsp;&nbsp;</button>
           </div>
         </div>
-      </form>
+      <% end %>
+
     </div>
   </div>
 </div>
