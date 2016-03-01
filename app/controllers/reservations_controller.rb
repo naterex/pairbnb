@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       flash.now[:success] = "Successfully made reservation."
-      redirect_to "index"
+      redirect_to reservations_path
     else
       flash.now[:error] = @reservation.errors.full_messages.first
       render listing

@@ -9,12 +9,12 @@
         <% @listings.each do |listing| %>
           <div class="col-sm-6 col-md-5 col-lg-4" id="my_listings">
             <h4>
-              <%= link_to listing.title, listing_path(listing), 'data-no-turbolink' => true %>
+              <%= link_to listing.title, listing_path(listing) %>
             </h4>
             <% if listing.photos? %>
-              <%= link_to image_tag(listing.photos[0].url(:thumb).to_s, class: "img-rounded img-responsive"), listing_path(listing),'data-no-turbolink' => true %>
+              <%= link_to image_tag(listing.photos[0].url(:thumb).to_s, class: "img-rounded img-responsive"), listing_path(listing) %>
             <% else %>
-              <%= link_to image_tag("http://placehold.it/350x250", class: "img-rounded img-responsive"), listing_path(listing),'data-no-turbolink' => true %>
+              <%= link_to image_tag("http://placehold.it/350x250", class: "img-rounded img-responsive"), listing_path(listing) %>
             <% end %>
             <h5><%= listing.city %>, <%= listing.country %></h5>
           </div>

@@ -13,25 +13,27 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
+//= require map
+//= require reservations
 //= require_tree .
 
 
-$(document).on('ready',function(){
+$(document).on('ready', function(){
+
+  $("#reservations_table").DataTable({
+    "order": [[ 0, "asc" ]]
+  });
+
   $("#daterange").daterangepicker({
     "autoApply": true,
   });
 
-  $('#daterange').on('cancel.daterangepicker', function(ev, picker) {
-    $('#daterange').val('');
-  });
+  $("#daterange").on("apply.daterangepicker", function(ev, picker) {
+    console.log(picker.startDate.format("YYYY-MM-DD"));
+    var start = picker.startDate.format("YYYY-MM-DD");
 
-  $('#daterange').on('apply.daterangepicker', function(ev, picker) {
-    console.log(picker.startDate.format('YYYY-MM-DD'));
-    var start = picker.startDate.format('YYYY-MM-DD');
-
-    console.log(picker.endDate.format('YYYY-MM-DD'));
-    var end = picker.endDate.format('YYYY-MM-DD');
+    console.log(picker.endDate.format("YYYY-MM-DD"));
+    var end = picker.endDate.format("YYYY-MM-DD");
   });
 
 });
