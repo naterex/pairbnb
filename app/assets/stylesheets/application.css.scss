@@ -23,6 +23,7 @@
  $grey: #F5F5F5;
  $dark-grey: #565A5C;
 
+
 html {
   position: relative;
   min-height: 100%;
@@ -34,6 +35,11 @@ body {
     margin-left: 0px;
     margin-right: 0px;
   }
+}
+
+/* Row with equal height columns */
+input#readonly {
+  background-color: white;
 }
 
 .navbar {
@@ -130,15 +136,25 @@ body {
 }
 
 #listing, #my_listings {
-  padding-bottom: 2rem; /* div should have .row class wrapper */
-  a {
-    text-decoration: none;
-  }
-  h3 {
+  padding-bottom: 4rem; /* div should have .row class wrapper */
+  .row {
     a {
       text-decoration: none;
     }
+    h3 {
+      a {
+        text-decoration: none;
+      }
+    }
+    .booking {
+      background: $grey;
+      padding: 1rem;
+    }
   }
+}
+
+#map {
+  height: 300px;
 }
 
 footer {

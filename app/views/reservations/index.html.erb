@@ -1,0 +1,31 @@
+<div class="row">
+  <center>
+    <h2>My Reservations</h2>
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-8 col-lg-offset-2">
+
+      <% if @reservations.count == 0 %>
+        <h4>No reservations found, <%= link_to "click here to make a reservation.", root_path %></h4>
+      <% else %>
+        <table class="table table-hover">
+          <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Listing</th>
+            <th>City, Country</th>
+            <th>Owner</th>
+          </tr>
+          <% @reservations.each do |reservation| %>
+          <tr>
+            <td><%= reservation.start_date %></td>
+            <td><%= reservation.end_date %></td>
+            <td><%= reservation.listing.title %></td>
+            <td><%= reservation.listing.city %>, <%= reservation.listing.country %></td>
+            <td><%= reservation.listing.user.email %></td>
+          </tr>
+          <% end %>
+        </table>
+
+      <% end %>
+    </div>
+  </center>
+</div>

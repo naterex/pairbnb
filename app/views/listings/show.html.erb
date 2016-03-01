@@ -1,70 +1,125 @@
 <div class="row">
-  <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-9 col-lg-offset-1" id="listing">
-    <center>
-      <h2><%= @listing.title %></h2>
+  <div class="col-sm-12 col-md-11 col-lg-10 col-lg-offset-1" id="listing">
 
-      <div class="row">
-        <% if @listing.photos? %>
-          <% @listing.photos.each_with_index do |photo| %>
-            <%= image_tag photo.url(:thumb).to_s, class: "img-rounded img-thumbnail img-responsive" %>
-          <% end %>
-        <% else %>
-          <%= image_tag "http://placehold.it/350x250", class: "img-rounded img-thumbnail img-responsive" %>
-        <% end %>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-sm-9 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>About</td>
-                <td><%= @listing.about %></td>
-              </tr>
-              <tr>
-                <td><%= @listing.property_type %></td>
-                <td><%= @listing.room_type %></td>
-              </tr>
-              <tr>
-                <td>Property</td>
-                <td>
-                  <%= @listing.bedrooms %> bedrooms<br>
-                  <%= @listing.bathrooms %> baths<br>
-                  <%= @listing.guests %> guests
-                </td>
-              </tr>
-              <tr>
-                <td>Amenities</td>
-                <td>
-                  AMENITIES GO HERE<br>
-                  AMENITIES GO HERE<br>
-                  AMENITIES GO HERE
-                </td>
-              </tr>
-              <tr>
-                <td>Address</td>
-                <td>
-                  <%= @listing.address %><br>
-                  <%= @listing.city %>, <%= @listing.state %><br>
-                  <%= @listing.zip %><br>
-                  <%= @listing.country %>
-                </td>
-              <tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-xs-9 col-xs-offset-1 col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 col-lg-4 ">
-
+    <div class="row">
+      <% if signed_in? && (current_user.id == @listing.user.id) %>
+        <br>
+        <div class="pull-right">
           <%= link_to t(".edit_listing"), edit_listing_path, class: "btn btn-success" %>
 
-          <div class="pull-right">
-              <%= link_to t(".delete_listing"), listing_path, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+          <%= link_to t(".delete_listing"), listing_path, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+        </div>
+          <br>
+      <% end %>
+      <center>
+        <h2><%= @listing.title %></h2>
+      </center>
+    </div><!-- row -->
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+        <center>
+          <% if @listing.photos? %>
+            <% @listing.photos.each_with_index do |photo| %>
+              <%= image_tag photo.url(:small).to_s, class: "img-rounded img-thumbnail img-responsive" %>
+            <% end %>
+          <% else %>
+            <%= image_tag "http://placehold.it/350x250", class: "img-rounded img-thumbnail img-responsive" %>
+          <% end %>
+        </center>
+      </div>
+
+      <div class="col-xs-12 col-sm-3 booking">
+        <div class="col-xs-5 col-sm-12">
+          <h4>Cost per night:</h4>
+          <div class="input-group">
+            <span class="input-group-addon">USD <span class="glyphicon glyphicon-usd"></span></span>
+            <input id="readonly" class="form-control" type="text" value="<%= @listing.price %>" readonly>
           </div>
+        <br>
+        </div>
+
+        <div class="col-xs-7 col-sm-12">
+          <h4>Select dates:</h4>
+          <%= form_tag(reservations_path, method: "post") do %>
+            <div class="input-group">
+              <input type="hidden" name="listing_id" value="<%= @listing.id %>">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              <input class="form-control" type="text" name="daterange" id="daterange"/>
+            </div>
+            <br>
+            <center>
+              <button type="submit" class="btn btn-success">Book now</button>
+            </center>
+          <% end %>
+        </div><!-- col-xs-7 -->
+
+      </div><!-- booking -->
+      <br>
+    </div><!-- row -->
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="page-header">
+          <h4>Address</h4>
+        </div>
+        <%= @listing.address %><br>
+        <%= @listing.city %>, <%= @listing.state %><br>
+        <%= @listing.country %> <% @listing.zip %><br>
+      </div>
+      <div class="col-sm-3">
+        <div class="page-header">
+          <h4><%= @listing.room_type %></h4>
+        </div>
+        <%= @listing.bedrooms %> bedrooms<br>
+        <%= @listing.bathrooms %> baths<br>
+        <%= @listing.guests %> guests
+      </div>
+      <div class="col-sm-6">
+        <div class="page-header">
+          <h4>Amenities</h4>
+        </div>
+        <div class="col-xs-4">
+          AMENTIES<br>
+          AMENTIES<br>
+          AMENTIES<br>
+          AMENTIES
+        </div>
+        <div class="col-xs-4">
+          AMENTIES<br>
+          AMENTIES<br>
+          AMENTIES<br>
+          AMENTIES
+        </div>
+        <div class="col-xs-4">
+          AMENTIES<br>
+          AMENTIES<br>
+          AMENTIES
         </div>
       </div>
-    </center>
-  </div>
-</div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="page-header">
+          <h4>About</h4>
+        </div>
+        <%= @listing.about %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="page-header">
+          <h4>Location</h4>
+        </div>
+        <div id="map"></div>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvxDulYD_MO48MXUKk-mtwG9tS-k5ou1U&libraries=visualization&callback=initMap">
+        </script>
+
+        <%= javascript_include_tag 'map', 'data-turbolinks-track' => true %>
+      </div>
+    </div>
+  </div><!-- #listing -->
+</div><!-- row -->

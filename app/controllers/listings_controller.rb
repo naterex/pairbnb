@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :find_listing, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :create, :edit, :update, :delete]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @listing = current_user.listings.build
@@ -66,7 +66,7 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    params.require(:listing).permit(:title, :about, :room_type, :property_type, :bedrooms, :bathrooms, :guests, :address, :city, :state, :zip, :country, {photos: []}, :photos_cache, :remove_photos )
+    params.require(:listing).permit(:title, :about, :price, :room_type, :property_type, :bedrooms, :bathrooms, :guests, :address, :city, :state, :zip, :country, {photos: []}, :photos_cache, :remove_photos )
   end
 
 end

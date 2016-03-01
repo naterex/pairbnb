@@ -1,26 +1,41 @@
-<div class="form-group ">
-  <%= form.label :title %>
-  <%= form.text_field :title, type: "text", class: "form-control", placeholder: "listing title", required: true %>
+<div class="row">
+  <div class="form-group ">
+    <%= form.label :title %>
+    <%= form.text_field :title, type: "text", class: "form-control", placeholder: "listing title", required: true %>
+  </div>
 </div>
 
-<div class="form-group ">
-  <%= form.label :about %>
-  <%= form.text_area :about, type: "text", class: "form-control", rows: "6", placeholder: "description of property", required: true %>
+<div class="row">
+  <div class="form-group ">
+    <%= form.label :about %>
+    <%= form.text_area :about, type: "text", class: "form-control", rows: "6", placeholder: "description of property", required: true %>
+  </div>
 </div>
 
-<div class="form-group ">
-  <%= form.label :photos %>
-  <% if @listing.photos? %>
-    <br>
-    <% @listing.photos.each_with_index do |photo| %>
-      <%= image_tag photo.url(:small).to_s, class: "img-rounded img-thumbnail img-responsive" %>
+<div class="row">
+  <div class="form-group ">
+    <div class="col-xs-3">
+      <%= form.label :price, "$ price / per night" %>
+      <%= form.text_field :price, type: "number", min: "1", step: "1", class: "form-control", placeholder: "95", required: true %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group ">
+    <%= form.label :photos %>
+    <% if @listing.photos? %>
+      <br>
+      <% @listing.photos.each_with_index do |photo| %>
+        <%= image_tag photo.url(:small).to_s, class: "img-rounded img-thumbnail img-responsive" %>
+      <% end %>
     <% end %>
-  <% end %>
-  <%= form.file_field :photos, multiple: true %>
-  <%= form.hidden_field :photos_cache %>
-  <br>
+    <%= form.file_field :photos, multiple: true %>
+    <%= form.hidden_field :photos_cache %>
+    <br>
     <%= form.check_box :remove_photos %>
     <%= form.label :remove_photos %>
+  </div>
 </div>
 
 <br>
@@ -40,53 +55,70 @@
     </div>
   </div>
 </div>
-
 <br>
 
 <div class="row">
   <div class="col-xs-4">
-
     <div class="form-group ">
       <%= form.label :bedrooms %>
       <%= form.select :bedrooms, [1,2,3,4,5], required: true %>
     </div>
   </div>
-  <div class="col-xs-4">
 
+  <div class="col-xs-4">
     <div class="form-group ">
       <%= form.label :bathrooms %>
       <%= form.select :bathrooms, [1,2,3,4,5], required: true %>
     </div>
   </div>
-  <div class="col-xs-4">
 
+  <div class="col-xs-4">
     <div class="form-group ">
       <%= form.label :guests %>
       <%= form.select :guests, [1,2,3,4,5,6,7,8], class: "form-control", required: true %>
     </div>
   </div>
 </div>
-<div class="form-group ">
-  <%= form.label :address %>
-  <%= form.text_area :address, type: "text", class: "form-control", placeholder: "unit number and street address", required: true %>
+
+<div class="row">
+  <div class="form-group ">
+    <%= form.label :address %>
+    <%= form.text_area :address, type: "text", class: "form-control", placeholder: "unit number and street address", required: true %>
+  </div>
 </div>
 
-<div class="form-group ">
-  <%= form.label :city %>
-  <%= form.text_field :city, type: "text", class: "form-control", placeholder: "city", required: true %>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="form-group ">
+      <%= form.label :city %>
+      <%= form.text_field :city, type: "text", class: "form-control", placeholder: "city", required: true %>
+    </div>
+  </div>
 </div>
 
-<div class="form-group ">
-  <%= form.label :state %>
-  <%= form.text_field :state, type: "text", class: "form-control", placeholder: "state/province", required: true %>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="form-group ">
+      <%= form.label :state %>
+      <%= form.text_field :state, type: "text", class: "form-control", placeholder: "state/province", required: true %>
+    </div>
+  </div>
 </div>
 
-<div class="form-group ">
-  <%= form.label :zip %>
-  <%= form.text_field :zip, type: "text", placeholder: "zipcode", class: "form-control" %>
+<div class="row">
+  <div class="col-xs-4">
+    <div class="form-group ">
+      <%= form.label :zip %>
+      <%= form.text_field :zip, type: "text", placeholder: "zipcode", class: "form-control" %>
+    </div>
+  </div>
 </div>
 
-<div class="form-group ">
-  <%= form.label :country %>
-  <%= form.text_field :country, type: "text", class: "form-control", placeholder: "country", required: true %>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="form-group ">
+      <%= form.label :country %>
+      <%= form.text_field :country, type: "text", class: "form-control", placeholder: "country", required: true %>
+    </div>
+  </div>
 </div>
