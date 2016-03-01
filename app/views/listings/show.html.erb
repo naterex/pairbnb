@@ -5,7 +5,7 @@
       <% if signed_in? && (current_user.id == @listing.user.id) %>
         <br>
         <div class="pull-left">
-          <%= link_to '<i class="glyphicon glyphicon-tags"></i>&nbsp;&nbsp;Reservations for this listing'.html_safe, edit_listing_path, class: "btn btn-primary" %>
+          <%= link_to '<i class="glyphicon glyphicon-tags"></i>&nbsp;&nbsp;Reservations for this listing'.html_safe, reservations_path(@listing), class: "btn btn-primary" %>
         </div>
         <div class="pull-right">
           <%= link_to '<i class="glyphicon glyphicon-wrench"></i>&nbsp;&nbsp;Edit'.html_safe, edit_listing_path, class: "btn btn-success" %>

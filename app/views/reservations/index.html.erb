@@ -10,6 +10,7 @@
         <table class="display" id="reservations_table" cellspacing="10" width="100%">
           <thead>
             <tr>
+              <th>ID</th>
               <th>From</th>
               <th>To</th>
               <th>Listing</th>
@@ -20,6 +21,7 @@
           <tbody>
             <% @reservations.each do |reservation| %>
             <tr>
+              <td><%= reservation.id %></td>
               <td><%= reservation.start_date %></td>
               <td><%= reservation.end_date %></td>
               <td><%= link_to reservation.listing.title, listing_path(reservation.listing) %></td>

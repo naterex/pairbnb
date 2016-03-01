@@ -14,9 +14,9 @@ class Listing < ActiveRecord::Base
   # validates_presence_of :zip
   validates_presence_of :country
 
-  belongs_to :user
   mount_uploaders :photos, PhotoUploader
 
+  belongs_to :user
   has_many :reservations, dependent: :destroy
   has_many :booked_dates, dependent: :destroy
 
