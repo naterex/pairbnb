@@ -44,7 +44,7 @@ class ListingsController < ApplicationController
 
   def update
     if @listing.update(listing_params)
-      flash.now[:success] = "Successfully updated listing."
+      flash[:success] = "Successfully updated listing."
       redirect_to @listing
     else
       flash.now[:error] = @listing.errors.full_messages.first
@@ -54,7 +54,7 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing.destroy
-    flash.now[:success] = "Successfully deleted listing."
+    flash[:success] = "Successfully deleted listing."
     redirect_to root_path
   end
 

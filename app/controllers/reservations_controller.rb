@@ -1,56 +1,51 @@
 class ReservationsController < ApplicationController
-  before_action :require_login, only: [:create, :show, :index, :edit, :update, :destroy]
-  # before_action :check_lister_self_reservation, only: [:create]
-  # before_action :check_booked, only: [:create, :edit, :update]
-  before_action :find_reservation, only: [:show, :edit, :update, :destroy, :check_lister_self_reservation, :check_booked]
-
-  def new
-  end
+  before_action :require_login, only: [:create, :show, :index, :destroy]
+  before_action :find_reservation, only: [:show, :destroy]
 
   def create
     listing = Listing.find(params[:listing_id])
 
-    daterange = params[:daterange]
-    daterange.gsub!(/(\d{2})\/(\d{2})\/(\d{4}).-.(\d{2})\/(\d{2})\/(\d{4})/,'\3-\1-\2 \6-\4-\5')
-    start_date, end_date = daterange.split(" ")
+    # after move to model call it as a method
+    # listing.check_booked
 
-    @reservation = listing.reservations.build(user_id: current_user.id, start_date: start_date, end_date: end_date)
-
-
-    if @reservation.save
-      flash.now[:success] = "Successfully made reservation."
-      redirect_to reservations_path
+    # check if current_user trying to book his own listing
+    if (current_user.id == listing.user.id)
+      flash[:error] = "You cannot book your own listing."
+      redirect_to listing
     else
-      flash.now[:error] = @reservation.errors.full_messages.first
-      render listing
+
+      # parse start_date, end_date from daterange params
+      daterange = params[:daterange]
+      daterange.gsub!(/(\d{2})\/(\d{2})\/(\d{4}).-.(\d{2})\/(\d{2})\/(\d{4})/,'\3-\1-\2 \6-\4-\5')
+      start_date, end_date = daterange.split(" ")
+
+      @reservation = listing.reservations.build(user_id: current_user.id, start_date: start_date, end_date: end_date)
+
+      availability = check_booked()
+
+
+      if @reservation.save
+        flash[:success] = "Successfully made reservation."
+        redirect_to reservations_path
+      else
+        flash[:error] = @reservation.errors.full_messages.first
+        redirect_to listing
+      end
     end
+
   end
 
   def show
   end
 
   def index
-    # byebug
     @reservations = current_user.reservations.all
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy
   end
 
   private
-
-  def check_lister_self_reservation
-    if signed_in? && (current_user.id == @listing.user.id)
-      flash.now[:error] = "You cannot reserve your own listing."
-      render @listing
-    end
-  end
 
   def check_booked
     # after save callback

@@ -14,7 +14,7 @@
               <th>To</th>
               <th>Listing</th>
               <th>City, Country</th>
-              <th>Listing owner</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -22,15 +22,20 @@
             <tr>
               <td><%= reservation.start_date %></td>
               <td><%= reservation.end_date %></td>
-              <td><%= link_to reservation.listing.title, reservation_path(reservation) %></td>
+              <td><%= link_to reservation.listing.title, listing_path(reservation.listing) %></td>
               <td><%= reservation.listing.city %>, <%= reservation.listing.country %></td>
-              <td><%= reservation.listing.user.email %></td>
+              <td>
+              <%= link_to '<i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;View'.html_safe, reservation_path(reservation), class: "btn btn-primary" %>
+              </td>
             </tr>
             <% end %>
           </tbody>
         </table>
 
       <% end %>
-    </div>
+      <br>
+      <br>
+
+    </div><!-- col-sm -->
   </center>
-</div>
+</div><!-- row -->

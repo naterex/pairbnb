@@ -18,7 +18,7 @@
 //= require_tree .
 
 
-$(document).on('ready', function(){
+$(document).ready(function(){
 
   $("#reservations_table").DataTable({
     "order": [[ 0, "asc" ]]
