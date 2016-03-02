@@ -11,13 +11,11 @@ class ReservationsController < ApplicationController
       redirect_to listing
     else
 
-      # parse start_date, end_date from single input: daterange params
       daterange = params[:daterange]
+      # parse daterange into YYYY-MM-DD format
       daterange.gsub!(/(\d{2})\/(\d{2})\/(\d{4}).-.(\d{2})\/(\d{2})\/(\d{4})/,'\3-\1-\2 \6-\4-\5')
+      # extract start_date, end_date from daterange
       start_date, end_date = daterange.split(" ")
-
-      # after move to model call it as a method
-      # listing.dates_available
 
       @reservation = current_user.reservations.build(listing_id: params[:listing_id], start_date: start_date, end_date: end_date)
 
@@ -27,7 +25,6 @@ class ReservationsController < ApplicationController
 
           @reservation.dates.each do |date|
             @reservation.booked_dates.create(listing_id: params[:listing_id], date: date)
-            # byebug
           end
 
           flash[:success] = "Successfully made reservation."
@@ -38,20 +35,29 @@ class ReservationsController < ApplicationController
         end # @reservation.save
 
       else
-
-        flash[:error] = "This listing is not available for booking from #{start_date} to #{end_date}."
+        # start_date = start_date.to_formatted_s(:long)
+        # end_date = end_date.to_formatted_s(:long)
+        flash[:error] = "This listing is not available for booking for your selected dates of #{start_date} to #{end_date}."
         redirect_to listing
 
       end # dates_available? check
     end # current_user self booking check
-
-  end
+  end # create
 
   def show
   end
 
   def index
-    @reservations = current_user.reservations.all
+    if params[:listing_id]
+      listing = Listing.find(params[:listing_id])
+      @reservations = listing.reservations.all
+      @index_title = "Reservations for: #{listing.title}"
+      @owner_viewing = true
+    else
+      @reservations = current_user.reservations.all
+      @index_title = "My Reservations"
+      @owner_viewing = false
+    end
   end
 
   def destroy

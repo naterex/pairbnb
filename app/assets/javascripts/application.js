@@ -13,26 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require map
+
 //= require_tree .
 
 
 $(document).on('ready', function(){
-
-  $("#reservations_table").DataTable({
-    "order": [[ 0, "asc" ]]
-  });
-
-  $("#daterange").daterangepicker({
-    "autoApply": true,
-  });
-
-  $("#daterange").on("apply.daterangepicker", function(ev, picker) {
-    // console.log(picker.startDate.format("YYYY-MM-DD"));
-    var start = picker.startDate.format("YYYY-MM-DD");
-
-    // console.log(picker.endDate.format("YYYY-MM-DD"));
-    var end = picker.endDate.format("YYYY-MM-DD");
-  });
 
 });

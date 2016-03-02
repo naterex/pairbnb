@@ -1,19 +1,29 @@
+<% content_for :stylesheets do %>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css"/>
+
+<% end %>
+
 <div class="row">
   <center>
-    <h2>My Reservations</h2>
+    <h2><%= @index_title %></h2>
     <br>
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-8 col-lg-offset-2">
 
       <% if @reservations.count == 0 %>
-        <h4>No reservations found, <%= link_to "click here to make a reservation.", root_path %></h4>
+        <h4>No reservations found, <%= link_to "click here to search listings.", root_path %></h4>
       <% else %>
         <table class="display" id="reservations_table" cellspacing="10" width="100%">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Booking date</th>
               <th>From</th>
               <th>To</th>
-              <th>Listing</th>
+              <% if @owner_viewing %>
+                <th>Renter</th>
+              <% else %>
+                <th>Listing</th>
+              <% end %>
               <th>City, Country</th>
               <th></th>
             </tr>
@@ -21,10 +31,14 @@
           <tbody>
             <% @reservations.each do |reservation| %>
             <tr>
-              <td><%= reservation.id %></td>
-              <td><%= reservation.start_date %></td>
-              <td><%= reservation.end_date %></td>
-              <td><%= link_to reservation.listing.title, listing_path(reservation.listing) %></td>
+              <td><%= reservation.created_at.to_formatted_s(:long) %></td>
+              <td><%= reservation.start_date.to_formatted_s(:long) %></td>
+              <td><%= reservation.end_date.to_formatted_s(:long) %></td>
+              <% if @owner_viewing %>
+                <td><%= reservation.user.email %></td>
+              <% else %>
+                <td><%= link_to reservation.listing.title, listing_path(reservation.listing) %></td>
+              <% end %>
               <td><%= reservation.listing.city %>, <%= reservation.listing.country %></td>
               <td>
               <%= link_to '<i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;View'.html_safe, reservation_path(reservation), class: "btn btn-primary" %>
@@ -41,3 +55,17 @@
     </div><!-- col-sm -->
   </center>
 </div><!-- row -->
+
+<% content_for :javascript do %>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+
+  <script type="text/javascript">
+
+    $("#reservations_table").DataTable({
+      "order": [[ 0, "asc" ]]
+    });
+
+  </script>
+
+<% end %>
