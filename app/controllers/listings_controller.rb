@@ -32,10 +32,10 @@ class ListingsController < ApplicationController
         @index_title = "Search results for: '#{params[:search]}' "
       end
 
-      @listings = Listing.search(params[:search]).order("created_at DESC")
+      @listings = Listing.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 2)
     else
       @index_title = "My Listings"
-      @listings = current_user.listings.all
+      @listings = current_user.listings.all.paginate(page: params[:page], per_page: 2)
     end
   end
 

@@ -52,3 +52,7 @@
     <% end %><!-- if listing.count -->
   </div><!-- row -->
 </div><!-- container -->
+<center>
+  <%= will_paginate @listings, renderer: BootstrapPagination::Rails %>
+</center>
+<br>
