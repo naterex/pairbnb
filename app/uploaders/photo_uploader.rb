@@ -44,21 +44,26 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   # Process uploaded image would be scaled to be no larger than 400 by 400 pixels
-  process :resize_to_fit => [400, 400]
+  process :resize_to_fit => [770, 770]
   #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    # no bigger than [x,y] dimensions
-    process :resize_to_fill => [350, 250]
+  version :carousel do
+    # fills exactly [x,y] dimensions
+    process :resize_to_fill => [770, 300]
   end
 
-  version :small, from_version: :thumb do
+  version :small do
     # fills exactly [x,y] dimensions
-    process :resize_to_fill => [250, 150]
+    process :resize_to_fill => [670, 500]
+  end
+
+  version :thumb do
+    # fills exactly [x,y] dimensions
+    process :resize_to_fill => [170, 100]
   end
 
   # Override the filename of the uploaded files:

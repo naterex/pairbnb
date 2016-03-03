@@ -15,22 +15,21 @@
       <ul class="nav navbar-nav navbar-right">
         <% if signed_in? %>
           <li>
-            <%= link_to '<i class="glyphicon glyphicon-home"></i> Create new listing'.html_safe, new_listing_path %>
+            <%= link_to '<i class="glyphicon glyphicon-picture"></i>&nbsp;&nbsp;Create new listing'.html_safe, new_listing_path %>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><%= link_to '<i class="glyphicon glyphicon-home"></i> My listings'.html_safe, listings_path %></li>
+              <li><%= link_to '<i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;My listings'.html_safe, listings_path %></li>
+              <li><%= link_to '<i class="glyphicon glyphicon-map-marker"></i>&nbsp;&nbsp;My reservations'.html_safe, reservations_path %></li>
               <li class="divider"></li>
-              <li>
-                <li><%= link_to '<i class="glyphicon glyphicon-user"></i> Profile'.html_safe %></li>
-              </li>
+                <li><%= link_to '<i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Profile'.html_safe %></li>
             </ul>
-          </li>
-          <%= link_to '<i class="glyphicon glyphicon-log-out"></i> Logout'.html_safe, sign_out_path, method: :delete, class: "btn btn-default navbar-btn" %>
+          </li><!-- dropdown -->
+          <%= link_to '<i class="glyphicon glyphicon-log-out"></i>&nbsp;&nbsp;Logout'.html_safe, sign_out_path, method: :delete, class: "btn btn-default navbar-btn" %>
         <% else %>
-          <li><%= link_to '<i class="glyphicon glyphicon-log-in"></i> Login'.html_safe, sign_in_path %></li>
-          <li><%= link_to '<i class="glyphicon glyphicon-user"></i> Signup'.html_safe, sign_up_path %></li>
+          <li><%= link_to '<i class="glyphicon glyphicon-log-in"></i>&nbsp;&nbsp;Login'.html_safe, sign_in_path %></li>
+          <li><%= link_to '<i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Signup'.html_safe, sign_up_path %></li>
         <% end %>
       </ul>
     </div><!-- .navbar-collapse -->

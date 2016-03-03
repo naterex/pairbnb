@@ -9,12 +9,15 @@
     <%= form.password_field :password, class: "form-control", required: true %>
   </div>
 
-  <%= form.submit class: "btn btn-success" %>
+  <%= form.button type: "submit", class: "btn btn-success" do %>
+    <i class="glyphicon glyphicon-log-in"></i>&nbsp;&nbsp;Login
+  <% end %>
+
   <%= link_to t(".forgot_password"), new_password_path, class: "btn btn-link" %>
 
   <div class="pull-right">
     <% if Clearance.configuration.allow_sign_up? %>
-      <%= link_to t(".sign_up"), sign_up_path, class: "btn btn-default" %>
+      <%= link_to '<i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Sign up'.html_safe, sign_up_path, class: "btn btn-default" %>
     <% end %>
   </div>
 <% end %>

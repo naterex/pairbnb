@@ -1,25 +1,54 @@
-<div class="row">
-  <center>
-    <h2><%= @index_title %></h2>
-    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-8 col-lg-offset-2">
+<div class="container" id="listings">
 
-      <% if @listings.count == 0 %>
-        <h3>No listings found, <%= link_to "click here to search again.", root_path %></h3>
-      <% else %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h2><%= @index_title %></h2>
+      </div>
+      <!-- <p>A snippet I recently used to display homes for a local brokerage.  Focused more on images when accessed through mobile</p> -->
+    </div><!-- col-md-12 -->
+  </div><!-- row -->
+
+  <div class="row">
+    <% if @listings.count == 0 %>
+      <div class="col-md-12">
+        <h4>No listings found, <%= link_to "click here to search again.", root_path %></h4>
+      </div>
+    <% else %>
+      <div class="col-sm-6 col-md-12 col-lg-6">
+
         <% @listings.each do |listing| %>
-          <div class="col-sm-6 col-md-5 col-lg-4" id="my_listings">
-            <h3>
-              <%= link_to listing.title, listing_path(listing) %>
-            </h3>
-            <% if listing.photos? %>
-              <%= link_to image_tag(listing.photos[0].url(:thumb).to_s, class: "img-rounded img-responsive"), listing_path(listing) %>
-            <% else %>
-              <%= link_to image_tag("http://placehold.it/350x250", class: "img-rounded img-responsive"), listing_path(listing) %>
-            <% end %>
-            <h5><%= listing.city %>, <%= listing.country %></h5>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </center>
-</div>
+          <div class="listing">
+            <div class="media">
+              <% if listing.photos.empty? %>
+                <%= link_to image_tag("http://placehold.it/340x200&text=no photos for listing", class: "img-responsive"), listing_path(listing), class: "pull-left" %>
+              <% else %>
+                <%= link_to image_tag(listing.photos[0].url(:small).to_s, class: "img-responsive"), listing_path(listing), class: "pull-left" %>
+              <% end %>
+              <div class="clearfix visible-sm"></div>
+              <!-- pushes text below the picture -->
+
+              <div class="media-body">
+                <br class="hidden-md hidden-lg">
+                <h4 class="media-heading">
+                  <span class="label label-primary pull-right">$<%= listing.price %> / night</span>
+                  <p><%= listing.city %>, <%= listing.country %></p>
+                  <%= link_to listing.title.first(60), listing_path(listing) %>
+                </h4>
+
+                <p>
+                  <%= listing.room_type %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= listing.bedrooms %> Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;<%= listing.bathrooms %> Baths
+                </p>
+
+                <p class="hidden-xs">
+                  <%= listing.about.first(166) %>
+                </p>
+
+              </div><!-- media-body -->
+            </div><!-- media -->
+          </div><!-- listing-->
+        <% end %><!-- listing.each -->
+      </div><!-- col-sm-6 -->
+    <% end %><!-- if listing.count -->
+  </div><!-- row -->
+</div><!-- container -->

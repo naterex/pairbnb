@@ -1,0 +1,75 @@
+<% content_for :stylesheets do %>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css"/>
+
+<% end %>
+
+<div class="container" id="reservations">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h2><%= @index_title %></h2>
+      </div>
+      <!-- <p>A snippet I recently used to display homes for a local brokerage.  Focused more on images when accessed through mobile</p> -->
+    </div><!-- col-md-12 -->
+  </div><!-- row -->
+  <div class="row">
+    <% if @reservations.count == 0 %>
+      <div class="col-md-12">
+        <h4>No reservations found, <%= link_to "click here to search listings.", root_path %></h4>
+      <% else %>
+        <table class="display" id="reservations_table" cellspacing="10" width="100%">
+          <thead>
+            <tr>
+              <th>Booking date</th>
+              <th>From</th>
+              <th>To</th>
+              <% if @owner_viewing %>
+                <th>Renter</th>
+              <% else %>
+                <th>Listing</th>
+              <% end %>
+              <th>City, Country</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reservations.each do |reservation| %>
+            <tr>
+              <td><%= reservation.created_at.to_formatted_s(:long) %></td>
+              <td><%= reservation.start_date.to_formatted_s(:long) %></td>
+              <td><%= reservation.end_date.to_formatted_s(:long) %></td>
+              <% if @owner_viewing %>
+                <td><%= reservation.user.email %></td>
+              <% else %>
+                <td><%= link_to reservation.listing.title, listing_path(reservation.listing) %></td>
+              <% end %>
+              <td><%= reservation.listing.city %>, <%= reservation.listing.country %></td>
+              <td>
+              <%= link_to '<i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;View'.html_safe, reservation_path(reservation), class: "btn btn-primary" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      <% end %>
+      <br>
+      <br>
+
+    </div><!-- col-sm -->
+  </div><!-- row -->
+</div><!-- reservations -->
+<% content_for :javascript do %>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+
+  <script type="text/javascript">
+
+    $("#reservations_table").DataTable({
+      "order": [[ 0, "asc" ]]
+    });
+
+  </script>
+
+<% end %>

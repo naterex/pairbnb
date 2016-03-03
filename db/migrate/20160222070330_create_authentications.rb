@@ -7,5 +7,11 @@ class CreateAuthentications < ActiveRecord::Migration
       t.string :provider
       t.timestamps null: false
     end
+
+    add_index :authentications, :user_id
+    add_index :authentications, :uid
+    add_index :authentications, :token
+    add_index :authentications, :provider
+
   end
 end

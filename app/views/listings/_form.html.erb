@@ -3,9 +3,16 @@
   <%= form.text_field :title, type: "text", class: "form-control", placeholder: "listing title", required: true %>
 </div>
 
+
+
 <div class="form-group ">
   <%= form.label :about %>
   <%= form.text_area :about, type: "text", class: "form-control", rows: "6", placeholder: "description of property", required: true %>
+</div>
+
+<div class="form-group ">
+  <%= form.label :price, "USD $/night" %>
+  <%= form.text_field :price, type: "number", min: "1", step: "1", class: "form-control", placeholder: "95", required: true %>
 </div>
 
 <div class="form-group ">
@@ -19,8 +26,8 @@
   <%= form.file_field :photos, multiple: true %>
   <%= form.hidden_field :photos_cache %>
   <br>
-    <%= form.check_box :remove_photos %>
-    <%= form.label :remove_photos %>
+  <%= form.check_box :remove_photos %>
+  <%= form.label :remove_photos %>
 </div>
 
 <br>
@@ -40,35 +47,34 @@
     </div>
   </div>
 </div>
-
 <br>
 
 <div class="row">
   <div class="col-xs-4">
-
     <div class="form-group ">
       <%= form.label :bedrooms %>
       <%= form.select :bedrooms, [1,2,3,4,5], required: true %>
     </div>
   </div>
-  <div class="col-xs-4">
 
+  <div class="col-xs-4">
     <div class="form-group ">
       <%= form.label :bathrooms %>
       <%= form.select :bathrooms, [1,2,3,4,5], required: true %>
     </div>
   </div>
-  <div class="col-xs-4">
 
+  <div class="col-xs-4">
     <div class="form-group ">
       <%= form.label :guests %>
       <%= form.select :guests, [1,2,3,4,5,6,7,8], class: "form-control", required: true %>
     </div>
   </div>
 </div>
+
 <div class="form-group ">
-  <%= form.label :address %>
-  <%= form.text_area :address, type: "text", class: "form-control", placeholder: "unit number and street address", required: true %>
+<%= form.label :address %>
+<%= form.text_area :address, type: "text", class: "form-control", placeholder: "unit number and street address", required: true %>
 </div>
 
 <div class="form-group ">

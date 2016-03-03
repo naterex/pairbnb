@@ -5,12 +5,15 @@
   </center>
 
   <%= form_for @listing do |form| %>
+
     <%= render partial: '/listings/form', object: form %>
 
-    <%= form.submit class: "btn btn-success" %>
+    <%= form.button type: "submit", class: "btn btn-success" do %>
+      <i class="glyphicon glyphicon-ok"></i> Update listing
+    <% end %>
 
     <div class="pull-right">
-        <%= link_to t(".cancel"), listing_path, class: "btn btn-danger" %>
+      <%= link_to '<i class="glyphicon glyphicon-remove"></i> Cancel'.html_safe, listing_path, class: "btn btn-danger" %>
     </div>
 
   <% end %>
