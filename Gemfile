@@ -50,7 +50,10 @@ gem 'nokogiri'
 gem 'premailer-rails'
 
 # SweetAlert Rails integration
-gem 'sweet-alert'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-sweetalert'
+end
+gem 'sweet-alert-confirm'
 
 # asynchronous processing
 gem 'sidekiq', '~> 4.1'

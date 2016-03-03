@@ -50,7 +50,13 @@
         </div>
         <div class="pull-right">
 
-          <%= link_to '<i class="glyphicon glyphicon-trash"></i>&nbsp;&nbsp;Cancel reservation'.html_safe, reservation_path, method: :delete, data: { confirm: 'Are you sure you want to cancel this reservation?'}, class: "btn btn-danger" %>
+          <%= link_to '<i class="glyphicon glyphicon-trash"></i>&nbsp;&nbsp;Cancel reservation'.html_safe, reservation_path, method: :delete, data: {
+              confirm: 'Are you sure you want to cancel this reservation?',
+              :'confirm-button-text' => 'Yes, cancel it',
+              :'cancel-button-text' => 'No, go back',
+              :'confirm-button-color' => '#66CD00',
+              :'sweet-alert-type' => 'info',
+              }, class: "btn btn-danger" %>
 
         </div>
       <% end %>
