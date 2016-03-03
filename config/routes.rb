@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
   constraints Clearance::Constraints::SignedIn.new do
     root to: 'listings#homepage', as: :signed_in_root
   end

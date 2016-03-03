@@ -45,6 +45,19 @@ gem 'fog-aws'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 
+# stylized emails that are delivered to be processed by premailer-rails
+gem 'nokogiri'
+gem 'premailer-rails'
+
+# SweetAlert Rails integration
+source 'https://rails-assets.org' do
+  gem 'rails-assets-sweetalert'
+end
+gem 'sweet-alert-confirm'
+
+# asynchronous processing
+gem 'sidekiq', '~> 4.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -57,6 +70,8 @@ gem 'will_paginate-bootstrap'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # Preview emails in the web browser
+  gem 'letter_opener_web', '~> 1.2.0'
 end
 
 group :development do

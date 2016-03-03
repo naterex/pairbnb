@@ -21,9 +21,9 @@
           <div class="listing">
             <div class="media">
               <% if listing.photos.empty? %>
-                <%= link_to image_tag("http://placehold.it/340x200&text=no photos for listing", class: "img-responsive"), listing_path(listing), class: "pull-left" %>
+                <%= link_to image_tag("http://placehold.it/340x200&text=no photos for listing", class: "img-responsive"), listing_path(listing), data: { no_turbolink: true }, class: "pull-left" %>
               <% else %>
-                <%= link_to image_tag(listing.photos[0].url(:small).to_s, class: "img-responsive"), listing_path(listing), class: "pull-left" %>
+                <%= link_to image_tag(listing.photos[0].url(:small).to_s, class: "img-responsive"), listing_path(listing), data: { no_turbolink: true }, class: "pull-left" %>
               <% end %>
               <div class="clearfix visible-sm"></div>
               <!-- pushes text below the picture -->
@@ -33,7 +33,7 @@
                 <h4 class="media-heading">
                   <span class="label label-primary pull-right">$<%= listing.price %> / night</span>
                   <p><%= listing.city %>, <%= listing.country %></p>
-                  <%= link_to listing.title.first(60), listing_path(listing) %>
+                  <%= link_to listing.title.first(60), listing_path(listing), data: { no_turbolink: true } %>
                 </h4>
 
                 <p>

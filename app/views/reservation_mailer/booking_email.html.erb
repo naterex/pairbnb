@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <p>
+    Dear <strong><%= @reservation.user.first_name %></strong>,
+  </p>
+
+  <p>
+    Congratulations, your reservation is <span class="label label-success">confirmed</span> for:
+    <h4><%= @reservation.listing.title %></h4>
+  </p>
+
+  <br>
+
+  <p>
+    You booked for <%= pluralize((@reservation.end_date-@reservation.start_date).to_i, 'night') %>, check-in on <strong><%= @reservation.start_date.to_formatted_s(:long) %></strong> and check-out on <strong><%= @reservation.end_date.to_formatted_s(:long) %></strong>.
+  </p>
+
+  <p>
+    You can see more reservation details at: <a href="<%= @url %>" target="_blank"><%= @url %></a>
+  </p>
+
+  <br>
+
+  <p>
+    Thanks,<br>
+    PairBnB
+  </p>
+
+</div>

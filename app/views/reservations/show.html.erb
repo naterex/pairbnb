@@ -11,7 +11,7 @@
           <%= image_tag(@reservation.listing.photos[0].url(:carousel).to_s, class:"img-responsive") %>
         <% end %>
         <div class="page-header">
-        <h4><%= link_to @reservation.listing.title, listing_path(@reservation) %></h4>
+        <h4><%= link_to @reservation.listing.title, listing_path(@reservation.listing) %></h4>
         </div>
         <%= @reservation.listing.about %>
       </div>
@@ -21,9 +21,9 @@
         </div>
         <strong>Your Payment ID: </strong> #105152396140
         <hr>
-        <strong>Check in: </strong><%= @reservation.start_date %>
+        <strong>Check-in: </strong><%= @reservation.start_date %>
         <hr>
-        <strong>Check out: </strong><%= @reservation.end_date %>
+        <strong>Check-out: </strong><%= @reservation.end_date %>
         <hr>
         <div class="row">
           <div class="col-xs-3">
@@ -37,7 +37,7 @@
         </div><!-- row -->
         <hr>
         <div class="price">
-          <h3>Total cost for <%= (@reservation.end_date - @reservation.start_date).to_i %> nights: $<%= @reservation.listing.price * (@reservation.end_date - @reservation.start_date).to_i %></h3>
+          <h3>Total cost for <%= pluralize((@reservation.end_date-@reservation.start_date).to_i, 'night') %>: $<%= @reservation.listing.price * (@reservation.end_date - @reservation.start_date).to_i %></h3>
         </div>
       </div>
     </div>
@@ -50,7 +50,13 @@
         </div>
         <div class="pull-right">
 
-          <%= link_to '<i class="glyphicon glyphicon-trash"></i>&nbsp;&nbsp;Cancel reservation'.html_safe, reservation_path, method: :delete, data: { confirm: 'Are you sure you want to delete this reservation?'}, class: "btn btn-danger" %>
+          <%= link_to '<i class="glyphicon glyphicon-trash"></i>&nbsp;&nbsp;Cancel reservation'.html_safe, reservation_path, method: :delete, data: {
+              confirm: 'Are you sure you want to cancel this reservation?',
+              :'confirm-button-text' => 'Yes, cancel it',
+              :'cancel-button-text' => 'No, go back',
+              :'confirm-button-color' => '#66CD00',
+              :'sweet-alert-type' => 'info',
+              }, class: "btn btn-danger" %>
 
         </div>
       <% end %>
