@@ -1,0 +1,15 @@
+<div class="container">
+
+  <h2>
+    Your reservation for '<%= @reservation.listing.title %>' is confirmed.
+  </h2>
+
+  <p>
+    You booked for <%= pluralize((@reservation.end_date-@reservation.start_date).to_i, 'day') %>, check-in on <%= @reservation.start_date.to_formatted_s(:long) %> and check-out on <%= @reservation.end_date.to_formatted_s(:long) %>.
+  </p>
+
+  <p>
+    You can see the details of your new reservation here: <a href="<%= @url %>"><%= @url %></a>
+  </p>
+
+</div>

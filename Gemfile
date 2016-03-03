@@ -45,6 +45,9 @@ gem 'fog-aws'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 
+# asynchronous
+gem 'sidekiq', '~> 4.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -57,6 +60,8 @@ gem 'will_paginate-bootstrap'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # Preview email in the default browser instead of sending it
+  gem "letter_opener"
 end
 
 group :development do

@@ -1,4 +1,9 @@
 class Reservation < ActiveRecord::Base
+  validates_presence_of :user_id
+  validates_presence_of :listing_id
+  validates_presence_of :start_date
+  validates_presence_of :end_date
+
   belongs_to :user
   belongs_to :listing
   has_many :booked_dates, dependent: :destroy

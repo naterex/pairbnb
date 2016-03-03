@@ -23,9 +23,13 @@ class ReservationsController < ApplicationController
 
         if @reservation.save
 
+          # created booked_dates table entries
           @reservation.dates.each do |date|
             @reservation.booked_dates.create(listing_id: params[:listing_id], date: date)
           end
+
+          # call the mailer like a model class with the necessary arguments
+          ReservationMailer.booking_email(@reservation).deliver_now
 
           flash[:success] = "Successfully made reservation."
           redirect_to @reservation
@@ -37,7 +41,7 @@ class ReservationsController < ApplicationController
       else
         # start_date = start_date.to_formatted_s(:long)
         # end_date = end_date.to_formatted_s(:long)
-        flash[:error] = "This listing is not available for booking for your selected dates of #{start_date} to #{end_date}."
+        flash[:error] = "This listing is not available for booking for your selected dates of #{start_date.to_formatted_s(:long)} to #{end_date.to_formatted_s(:long)}."
         redirect_to listing
 
       end # dates_available? check
@@ -61,6 +65,9 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation.destroy
+    flash[:success] = "Successfully canceled reservation."
+    redirect_to reservations_path
   end
 
   private

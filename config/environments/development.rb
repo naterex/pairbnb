@@ -41,4 +41,7 @@ Rails.application.configure do
 
   # Clearance gem
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  # Letter opener gem for emails
+  config.action_mailer.delivery_method = :letter_opener
 end

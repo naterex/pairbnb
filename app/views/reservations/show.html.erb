@@ -11,7 +11,7 @@
           <%= image_tag(@reservation.listing.photos[0].url(:carousel).to_s, class:"img-responsive") %>
         <% end %>
         <div class="page-header">
-        <h4><%= link_to @reservation.listing.title, listing_path(@reservation) %></h4>
+        <h4><%= link_to @reservation.listing.title, listing_path(@reservation.listing) %></h4>
         </div>
         <%= @reservation.listing.about %>
       </div>
