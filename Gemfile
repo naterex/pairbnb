@@ -45,7 +45,14 @@ gem 'fog-aws'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 
-# asynchronous
+# stylized emails that are delivered to be processed by premailer-rails
+gem 'nokogiri'
+gem 'premailer-rails'
+
+# SweetAlert Rails integration
+gem 'sweet-alert'
+
+# asynchronous processing
 gem 'sidekiq', '~> 4.1'
 
 # Use ActiveModel has_secure_password

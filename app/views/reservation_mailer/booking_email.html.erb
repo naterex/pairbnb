@@ -1,8 +1,11 @@
-<div class="container">
+<div class="container-fluid">
+  <p>
+    Dear <strong><%= @reservation.user.first_name %></strong>,
+  </p>
 
   <p>
-    Congratulations, your reservation is confirmed at:
-    <h3><%= @reservation.listing.title %></h3>
+    Congratulations, your reservation is <span class="label label-success">confirmed</span> for:
+    <h4><%= @reservation.listing.title %></h4>
   </p>
 
   <p>
@@ -10,7 +13,14 @@
   </p>
 
   <p>
-    You can see more reservation details here: <a href="<%= @url %>" target="_blank"><%= @url %></a>
+    You can see more reservation details at: <a href="<%= @url %>" target="_blank"><%= @url %></a>
+  </p>
+
+  <br>
+
+  <p>
+    Thanks,<br>
+    PairBnB
   </p>
 
 </div>

@@ -63,8 +63,9 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    ReservationMailer.cancellation_email(@reservation.listing.title, @reservation.user, @reservation.listing.id).deliver_now
     @reservation.destroy
-    flash[:success] = "Successfully canceled reservation."
+    flash[:success] = "Successfully cancelled reservation. Please check your email for confirmation."
     redirect_to reservations_path
   end
 

@@ -1,0 +1,20 @@
+<div class="container">
+  <p>
+    Dear <strong><%= @user.first_name %></strong>,
+  </p>
+
+  <p>
+    This confirms your reservation is <span class="label label-danger">cancelled</span> for:
+    <h4>
+    <a href="<%= @url %>" target="_blank"><%= @reservation_title %></a>
+    </h4>
+  </p>
+
+  <br>
+
+  <p>
+    Thanks,<br>
+    PairBnB
+  </p>
+
+</div>
