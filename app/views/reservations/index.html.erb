@@ -1,6 +1,7 @@
 <% content_for :stylesheets do %>
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.bootstrap.min.css"/>
 
 <% end %>
 
@@ -18,7 +19,7 @@
       <div class="col-md-12">
         <h4>No reservations found, <%= link_to "click here to search listings.", root_path %></h4>
       <% else %>
-        <table class="display" id="reservations_table" cellspacing="10" width="100%">
+        <table class="table table-striped table-bordered dt-responsive nowrap" id="reservations_table" cellspacing="10" width="100%">
           <thead>
             <tr>
               <th>Booking date</th>
@@ -63,11 +64,19 @@
 <% content_for :javascript do %>
 
   <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.0.2/js/dataTables.responsive.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.0.2/js/responsive.bootstrap.min.js"></script>
 
   <script type="text/javascript">
 
     $("#reservations_table").DataTable({
-      "order": [[ 0, "asc" ]]
+      "order": [[ 0, "asc" ]],
+      responsive: true,
+      columnDefs: [
+        { responsivePriority: 6, targets: 0 },
+        { responsivePriority: 4, targets: -1 }
+      ]
     });
 
   </script>
