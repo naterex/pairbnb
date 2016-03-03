@@ -21,9 +21,9 @@
         </div>
         <strong>Your Payment ID: </strong> #105152396140
         <hr>
-        <strong>Check in: </strong><%= @reservation.start_date %>
+        <strong>Check-in: </strong><%= @reservation.start_date %>
         <hr>
-        <strong>Check out: </strong><%= @reservation.end_date %>
+        <strong>Check-out: </strong><%= @reservation.end_date %>
         <hr>
         <div class="row">
           <div class="col-xs-3">
@@ -37,7 +37,7 @@
         </div><!-- row -->
         <hr>
         <div class="price">
-          <h3>Total cost for <%= (@reservation.end_date - @reservation.start_date).to_i %> nights: $<%= @reservation.listing.price * (@reservation.end_date - @reservation.start_date).to_i %></h3>
+          <h3>Total cost for <%= pluralize((@reservation.end_date-@reservation.start_date).to_i, 'night') %>: $<%= @reservation.listing.price * (@reservation.end_date - @reservation.start_date).to_i %></h3>
         </div>
       </div>
     </div>

@@ -60,8 +60,8 @@ gem 'sidekiq', '~> 4.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  # Preview email in the default browser instead of sending it
-  gem "letter_opener"
+  # Preview emails in the web browser
+  gem 'letter_opener_web', '~> 1.2.0'
 end
 
 group :development do

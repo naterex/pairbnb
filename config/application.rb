@@ -26,5 +26,8 @@ module Pairbnb
     # configure time to local & ignore timezones
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
+
+    # Use sidekiq for background processing (eg: to send emails)
+    # config.active_job.queue_adapter = :sidekiq
   end
 end
