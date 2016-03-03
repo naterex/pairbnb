@@ -247,6 +247,17 @@ footer {
   }
 }
 
+#reservation {
+  .row {
+    .col-sm-6 {
+      .price {
+        background: $grey;
+        padding: 3rem;
+      }
+    }
+  }
+}
+
 #listings {
   padding: 5px;
   div.row {
@@ -257,8 +268,14 @@ footer {
         -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
         box-shadow: 1px 1px 0 rgba(0,0,0,.2);
         padding: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         div.media {
+          a.pull-left {
+            padding-right: 0;
+            img {
+              margin: 0 1rem 0 1rem;
+            }
+          }
           div.media-body {
             h4.media-heading {
               p {
@@ -283,6 +300,17 @@ footer {
           }
         }
       }
+      div.col-sm-6 {
+        div.listing {
+          div.media {
+            a {
+              img {
+                max-width: 300px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -296,7 +324,6 @@ footer {
             a {
               img {
                 max-width: 230px;
-                margin-right: 10px;
               }
             }
           }

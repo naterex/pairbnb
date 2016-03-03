@@ -4,13 +4,18 @@
 
 <% end %>
 
-<div class="row">
-  <center>
-    <h2><%= @index_title %></h2>
-    <br>
-    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-8 col-lg-offset-2">
-
-      <% if @reservations.count == 0 %>
+<div class="container" id="reservations">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h2><%= @index_title %></h2>
+      </div>
+      <!-- <p>A snippet I recently used to display homes for a local brokerage.  Focused more on images when accessed through mobile</p> -->
+    </div><!-- col-md-12 -->
+  </div><!-- row -->
+  <div class="row">
+    <% if @reservations.count == 0 %>
+      <div class="col-md-12">
         <h4>No reservations found, <%= link_to "click here to search listings.", root_path %></h4>
       <% else %>
         <table class="display" id="reservations_table" cellspacing="10" width="100%">
@@ -53,9 +58,8 @@
       <br>
 
     </div><!-- col-sm -->
-  </center>
-</div><!-- row -->
-
+  </div><!-- row -->
+</div><!-- reservations -->
 <% content_for :javascript do %>
 
   <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>

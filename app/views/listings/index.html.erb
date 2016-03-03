@@ -26,13 +26,14 @@
                 <%= link_to image_tag(listing.photos[0].url(:small).to_s, class: "img-responsive"), listing_path(listing), class: "pull-left" %>
               <% end %>
               <div class="clearfix visible-sm"></div>
+              <!-- pushes text below the picture -->
 
               <div class="media-body">
                 <br class="hidden-md hidden-lg">
                 <h4 class="media-heading">
                   <span class="label label-primary pull-right">$<%= listing.price %> / night</span>
                   <p><%= listing.city %>, <%= listing.country %></p>
-                  <%= link_to listing.title.first(33), listing_path(listing) %>
+                  <%= link_to listing.title.first(60), listing_path(listing) %>
                 </h4>
 
                 <p>
@@ -46,9 +47,8 @@
               </div><!-- media-body -->
             </div><!-- media -->
           </div><!-- listing-->
-        <% end %>
-
+        <% end %><!-- listing.each -->
       </div><!-- col-sm-6 -->
-    <% end %>
+    <% end %><!-- if listing.count -->
   </div><!-- row -->
 </div><!-- container -->

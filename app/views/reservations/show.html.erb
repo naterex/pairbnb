@@ -36,7 +36,9 @@
           </div>
         </div><!-- row -->
         <hr>
-        <h3>Total: $<%= @reservation.listing.price * (@reservation.end_date - @reservation.start_date).to_i %></h3>
+        <div class="price">
+          <h3>Total cost for <%= (@reservation.end_date - @reservation.start_date).to_i %> nights: $<%= @reservation.listing.price * (@reservation.end_date - @reservation.start_date).to_i %></h3>
+        </div>
       </div>
     </div>
 
