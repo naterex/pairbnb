@@ -20,8 +20,20 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><%= link_to '<i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;My listings'.html_safe, listings_path %></li>
-              <li><%= link_to '<i class="glyphicon glyphicon-map-marker"></i>&nbsp;&nbsp;My reservations'.html_safe, reservations_path %></li>
+              <li>
+                <%= link_to listings_path do %>
+                  <%= content_tag :span, "  ", class: "glyphicon glyphicon-home" %>
+                  <%= content_tag :span, "My listings  " %>
+                  <%= content_tag :span, "#{current_user.listings.count}", class: "badge" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to reservations_path do %>
+                  <%= content_tag :span, "  ", class: "glyphicon glyphicon-home" %>
+                  <%= content_tag :span, "My reservations  " %>
+                  <%= content_tag :span, "#{current_user.reservations.count}", class: "badge" %>
+                <% end %>
+              </li>
               <li class="divider"></li>
                 <li><%= link_to '<i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Profile'.html_safe %></li>
             </ul>

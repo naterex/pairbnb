@@ -73,8 +73,15 @@ gem 'sidekiq', '~> 4.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
   # Preview emails in the web browser
   gem 'letter_opener_web', '~> 1.2.0'
+
+  # generating fake data such as names, addresses, and phone numbers.
+  gem 'faker', '~> 1.6', '>= 1.6.3'
+
+  # better errors
+  gem "better_errors"
 end
 
 group :development do

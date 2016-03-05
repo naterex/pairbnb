@@ -24,7 +24,9 @@ $blue: #30425A;
 $grey: #F5F5F5;
 $dark-grey: #565A5C;
 
-
+/*
+ * General/Utility Styles
+*/
 html {
   position: relative;
   min-height: 100%;
@@ -38,6 +40,9 @@ body {
   }
 }
 
+/*
+ * Navbar
+*/
 .navbar {
   margin-bottom: 0;
   .container-fluid {
@@ -66,6 +71,9 @@ body {
   }
 }
 
+/*
+ * Homepage
+*/
 .jumbotron {
   background: $dark-grey;
   // background-image:url('http://goo.gl/04j7Nn');
@@ -131,9 +139,37 @@ body {
   }
 }
 
-#my_listings {
-  padding-bottom: 4rem; /* div should have .row class wrapper */
-
+/*
+ * Listings index & show
+*/
+#listings {
+  padding: 5px;
+  div.row {
+    div.col-sm-6 {
+      div.listing {
+        background: $grey;
+        border: 1px solid #ededed;
+        -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+        box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+        padding: 10px;
+        div.media {
+          a.pull-left {
+            padding-right: 0;
+            img {
+              margin: 0 1rem 0 1rem;
+            }
+          }
+          div.media-body {
+            h4.media-heading {
+              p {
+                font-size: 1.6rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 #listing {
@@ -143,7 +179,11 @@ body {
       .row {
         .booking {
           background: $grey;
+          border: 1px solid #ededed;
+          -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+          box-shadow: 1px 1px 0 rgba(0,0,0,.2);
           padding: 1rem;
+          margin: -4px;
           .col-xs-5, .col-xs-12 {
             .input-group {
               input#readonly {
@@ -175,58 +215,27 @@ body {
   }
 }
 
+/*
+ * Reservations show
+*/
 #reservation {
-  position: relative;
-  padding: 0;
-  .user-image {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    text-align: center;
-    img {
-      clear: both;
-      margin:
-      auto;
-      position: relative;
-    }
-  }
-  .user-info-block {
-    width: 100%;
-    position: absolute;
-    top: 55px;
-    background: rgb(255, 255, 255);
-    z-index: 0;
-    padding-top: 35px;
-    .user-heading {
-      width: 100%;
-      text-align: center;
-      margin: 10px 0 0;
-    }
-  }
-  .navigation {
-    float: left;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-bottom: 1px solid #428BCA;
-    border-top: 1px solid #428BCA;
-    li {float: left; margin: 0; padding: 0;}
-    li a {padding: 20px 30px; float: left;}
-    li.active a {background: #428BCA; color: #fff;}
-  }
-  .user-body {
-    float: left;
-    padding: 5%;
-    width: 90%;
-    .tab-content {
-      div {float: left; width: 100%;}
-      h4 {width: 100%; margin: 10px 0; color: #333;}
+  .row {
+    .col-sm-6 {
+      .price {
+        background: $grey;
+        border: 1px solid #ededed;
+        -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+        box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+        padding: 3rem;
+      }
     }
   }
 }
 
 
+/*
+ * Footer
+*/
 footer {
   background: $blue;
   position: absolute; /* cannot use relative, will float up if no content */
@@ -248,60 +257,32 @@ footer {
   }
 }
 
-#reservation {
-  .row {
-    .col-sm-6 {
-      .price {
-        background: $grey;
-        padding: 3rem;
-      }
-    }
-  }
-}
 
-#listings {
-  padding: 5px;
+/*
+ * Media queries
+*/
+@media only screen and (max-width: 991px) {
   div.row {
-    div.col-sm-6 {
-      div.listing {
-        background: $grey;
-        border: 1px solid #ededed;
-        -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
-        box-shadow: 1px 1px 0 rgba(0,0,0,.2);
-        padding: 10px;
-        margin-bottom: 10px;
-        div.media {
-          a.pull-left {
-            padding-right: 0;
-            img {
-              margin: 0 1rem 0 1rem;
-            }
-          }
-          div.media-body {
-            h4.media-heading {
-              p {
-                font-size: 1.6rem;
-              }
-            }
-          }
+    div.col-md-12 {
+      div.page-header {
+        h2 {
+          font-size: 2.2rem;
         }
       }
     }
   }
-}
 
-/**** MEDIA QUERIES ****/
-@media only screen and (max-width: 991px) {
   #listings {
     div.row {
-      div.col-md-12 {
-        div.page-header {
-          h2 {
-            font-size: 2.2rem;
-          }
-        }
-      }
+      -moz-column-width: 37rem;
+      -webkit-column-width: 37rem;
+      -moz-column-gap: 0;
+      -webkit-column-gap: 0;
       div.col-sm-6 {
+        display: inline-block;
+        width:100%;
+        float:none;
+        padding-bottom:15px;
         div.listing {
           div.media {
             a {
@@ -319,7 +300,15 @@ footer {
 @media only screen and (min-width: 992px) {
   #listings {
     div.row {
-      div.col-sm-6 {
+      -moz-column-width: 58rem;
+      -webkit-column-width: 58rem;
+      -moz-column-gap: 0;
+      -webkit-column-gap: 0;
+      div.col-lg-6 {
+        display: inline-block;
+        width:100%;
+        float:none;
+        padding-bottom:15px;
         div.listing {
           div.media {
             a {

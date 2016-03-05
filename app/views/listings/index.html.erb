@@ -1,4 +1,4 @@
-<div class="container" id="listings">
+<div class="container">
 
   <div class="row">
     <div class="col-md-12">
@@ -8,7 +8,9 @@
       <!-- <p>A snippet I recently used to display homes for a local brokerage.  Focused more on images when accessed through mobile</p> -->
     </div><!-- col-md-12 -->
   </div><!-- row -->
+</div>
 
+<div class="container" id="listings">
   <div class="row">
     <% if @listings.count == 0 %>
       <div class="col-md-12">
@@ -41,7 +43,10 @@
                 </p>
 
                 <p class="hidden-xs">
-                  <%= listing.about.first(166) %>
+                  <%= listing.about.first(127) %>
+                </p>
+                <p class="hidden-sm hidden-md hidden-lg">
+                  <%= listing.about.first(100) %>
                 </p>
 
               </div><!-- media-body -->
