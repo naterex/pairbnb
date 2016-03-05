@@ -15,9 +15,9 @@
         <h4>No listings found, <%= link_to "click here to search again.", root_path %></h4>
       </div>
     <% else %>
-      <div class="col-sm-6 col-md-12 col-lg-6">
 
-        <% @listings.each do |listing| %>
+      <% @listings.each do |listing| %>
+        <div class="col-sm-6 col-md-12 col-lg-6">
           <div class="listing">
             <div class="media">
               <% if listing.photos.empty? %>
@@ -37,7 +37,7 @@
                 </h4>
 
                 <p>
-                  <%= listing.room_type %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= listing.bedrooms %> Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;<%= listing.bathrooms %> Baths
+                  <%= listing.room_type %>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="badge"><%= listing.bedrooms %></span> Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;<span class="badge"><%= listing.bathrooms %></span> Baths
                 </p>
 
                 <p class="hidden-xs">
@@ -47,8 +47,9 @@
               </div><!-- media-body -->
             </div><!-- media -->
           </div><!-- listing-->
-        <% end %><!-- listing.each -->
-      </div><!-- col-sm-6 -->
+        </div><!-- col-sm-6 -->
+      <% end %><!-- listing.each -->
+
     <% end %><!-- if listing.count -->
   </div><!-- row -->
 </div><!-- container -->

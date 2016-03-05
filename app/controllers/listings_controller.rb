@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
-  before_action :find_listing, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_listing, only: [:show, :edit, :update, :destroy]
 
   def new
     @listing = current_user.listings.build

@@ -83,15 +83,21 @@
 
             <div class="col-xs-7 col-sm-12">
               <h4>Select dates:</h4>
-              <%= form_tag(reservations_path, method: "post") do %>
+              <%= form_for :reservation, url: new_reservation_path, method: "get", enforce_utf8: false do |form| %>
+                <%= form.hidden_field :listing_id, value: @listing.id %>
+
                 <div class="input-group">
-                  <input type="hidden" name="listing_id" value="<%= @listing.id %>">
                   <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                  <input class="form-control" type="text" name="daterange" id="daterange"/>
+                  <%= form.text_field :daterange, id: "daterange", class: "form-control"%>
                 </div>
                 <br>
                 <center>
+                  <%= button_tag type: "submit", class: "btn btn-success btn-lg" do %>
+                    <i class="glyphicon glyphicon-circle-arrow-right"></i>&nbsp;&nbsp;Book now
+                  <% end %>
+                  <!--
                   <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;Book now&nbsp;&nbsp;</button>
+                  -->
                 </center>
               <% end %>
               <br>
@@ -99,41 +105,7 @@
           </div><!-- #carousel-text -->
 
           <div id="slide-content" style="display: none;">
-              <!-- <div id="slide-content-0">
-                  <h2>Slider One</h2>
-                  <p>Lorem Ipsum Dolor</p>
-                  <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
-              </div>
 
-              <div id="slide-content-1">
-                  <h2>Slider Two</h2>
-                  <p>Lorem Ipsum Dolor</p>
-                  <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
-              </div>
-
-              <div id="slide-content-2">
-                  <h2>Slider Three</h2>
-                  <p>Lorem Ipsum Dolor</p>
-                  <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
-              </div>
-
-              <div id="slide-content-3">
-                  <h2>Slider Four</h2>
-                  <p>Lorem Ipsum Dolor</p>
-                  <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
-              </div>
-
-              <div id="slide-content-4">
-                  <h2>Slider Five</h2>
-                  <p>Lorem Ipsum Dolor</p>
-                  <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
-              </div>
-
-              <div id="slide-content-5">
-                  <h2>Slider Six</h2>
-                  <p>Lorem Ipsum Dolor</p>
-                  <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
-              </div> -->
           </div><!-- #slide-content -->
         </div><!-- row -->
       </div><!-- #slider -->
@@ -160,48 +132,6 @@
       </ul>
     </div><!-- #slider-thumbs -->
 
-<!--     <div class="row">
-      <div class="col-xs-12 col-sm-9">
-        <center>
-          <% if @listing.photos? %>
-            <% @listing.photos.each_with_index do |photo| %>
-              <%= image_tag photo.url(:thumb).to_s, class: "img-rounded img-thumbnail img-responsive" %>
-            <% end %>
-          <% else %>
-            <%= image_tag "http://placehold.it/350x250", class: "img-rounded img-thumbnail img-responsive" %>
-          <% end %>
-        </center>
-      </div>
-
-      <div class="col-xs-12 col-sm-3 booking">
-        <div class="col-xs-5 col-sm-12">
-          <h4>Cost per night:</h4>
-          <div class="input-group">
-            <span class="input-group-addon">USD <span class="glyphicon glyphicon-usd"></span></span>
-            <input id="readonly" class="form-control" type="text" value="<%= @listing.price %>" readonly>
-          </div>
-        <br>
-        </div>
-
-        <div class="col-xs-7 col-sm-12">
-          <h4>Select dates:</h4>
-          <%= form_tag(reservations_path, method: "post") do %>
-            <div class="input-group">
-              <input type="hidden" name="listing_id" value="<%= @listing.id %>">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-              <input class="form-control" type="text" name="daterange" id="daterange"/>
-            </div>
-            <br>
-            <center>
-              <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;Book now&nbsp;&nbsp;</button>
-            </center>
-          <% end %>
-        </div><!-- col-xs-7
-
-      </div><!-- booking
-      <br>
-    </div><!-- row -->
-
     <div class="row">
       <div class="col-sm-3">
         <div class="page-header">
@@ -215,9 +145,9 @@
         <div class="page-header">
           <h4><%= @listing.room_type %></h4>
         </div>
-        <%= @listing.bedrooms %> bedrooms<br>
-        <%= @listing.bathrooms %> baths<br>
-        <%= @listing.guests %> guests
+        <span class="badge"><%= @listing.bedrooms %></span> bedrooms<br>
+        <span class="badge"><%= @listing.bathrooms %></span> baths<br>
+        <span class="badge"><%= @listing.guests %></span> guests
       </div>
       <div class="col-sm-6">
         <div class="page-header">
@@ -295,9 +225,13 @@
     $("#daterange").daterangepicker({
       "autoApply": true,
       "opens": "left",
-      // locale: {
-      //   format: 'MM-DD-YYYY'
-      // },
+      // isInvalidDate: function( date ) {
+      //  if( date.date() === 1 ) {
+      //    return true;
+      //  } else {
+      //    return false;
+      //  }
+      // }
     });
 
     $("#daterange").on("apply.daterangepicker", function(ev, picker) {
@@ -308,6 +242,7 @@
       var end = picker.endDate.format("YYYY-MM-DD");
     });
 
+    // Google Maps
     function initMap() {
       // console.log("GOOGLE MAPS LAH");
 

@@ -1,49 +1,71 @@
 class ReservationsController < ApplicationController
-  before_action :require_login, only: [:create, :show, :index, :destroy]
+  before_action :require_login, only: [:new, :create, :show, :index, :destroy]
   before_action :find_reservation, only: [:show, :destroy]
 
-  def create
-    listing = Listing.find(params[:listing_id])
+  def new
+    @listing = Listing.find(reservation_params[:listing_id])
 
     # check if current_user trying to book his own listing
-    if (current_user.id == listing.user.id)
+    if (current_user.id == @listing.user.id)
       flash[:error] = "You cannot book your own listing."
-      redirect_to listing
+      redirect_to @listing
     else
+      daterange = reservation_params[:daterange]
+      # split the dates & parse them to YYYY-MM-DD format
+      start_date, end_date = daterange.split(" - ")
 
-      daterange = params[:daterange]
-      # parse daterange into YYYY-MM-DD format
-      daterange.gsub!(/(\d{2})\/(\d{2})\/(\d{4}).-.(\d{2})\/(\d{2})\/(\d{4})/,'\3-\1-\2 \6-\4-\5')
-      # extract start_date, end_date from daterange
-      start_date, end_date = daterange.split(" ")
+      @start_date = Date.parse(start_date).strftime("%Y-%m-%d")
+      @end_date = Date.parse(end_date).strftime("%Y-%m-%d")
 
-      @reservation = current_user.reservations.build(listing_id: params[:listing_id], start_date: start_date, end_date: end_date)
-
-      if @reservation.dates_available?(start_date, end_date)
-
-        if @reservation.save
-
-          # created booked_dates table entries
-          @reservation.dates.each do |date|
-            @reservation.booked_dates.create(listing_id: params[:listing_id], date: date)
-          end
-
-          # call the mailer like a model class with the necessary arguments
-          ReservationMailer.booking_email(@reservation).deliver_now
-
-          flash[:success] = "Reservation succesfully booked. Please check your email for confirmation."
-          redirect_to @reservation
-        else
-          flash[:error] = @reservation.errors.full_messages.first
-          redirect_to listing
-        end # @reservation.save
-
+      if @start_date == @end_date
+        flash[:error] = "Check-out date can't be the same as check-in date."
+        redirect_to @listing
       else
-        flash[:error] = "Your selected dates of #{@reservation.start_date.to_formatted_s(:long)} to #{@reservation.end_date.to_formatted_s(:long)} are not available for booking."
-        redirect_to listing
 
-      end # dates_available? check
+        # dates = {start_date: start_date, end_date: end_date}
+
+        # remove :daterange from reservation_params
+        # reservation_params.delete_if{ | key,value | key == "daterange"}
+
+        # add start_date, end_date to reservation_params
+        # reservation_params.merge!(dates)
+        reservation = current_user.reservations.build(listing_id: reservation_params[:listing_id], start_date: @start_date, end_date: @end_date)
+
+        unless reservation.dates_available?(@start_date, @end_date)
+
+          flash[:error] = "Your selected dates of #{@start_date.to_date.to_formatted_s(:long)} to #{@end_date.to_date.to_formatted_s(:long)} are not available for booking."
+          redirect_to @listing
+
+        end # dates_available? check
+      end # start_date = end_date check
     end # current_user self booking check
+
+  end
+
+  def create
+    listing = Listing.find(reservation_params[:listing_id])
+
+    @reservation = current_user.reservations.build(listing_id: reservation_params[:listing_id], start_date: params[:reservation][:start_date], end_date: params[:reservation][:end_date])
+
+    if @reservation.save
+        @reservation.dates = (@reservation.start_date..@reservation.end_date).map(&:to_s)
+        # created booked_dates table entries
+        @reservation.dates.pop
+
+        @reservation.dates.each do |date|
+          @reservation.booked_dates.create(listing_id: reservation_params[:listing_id], date: date)
+        end
+
+      # call the mailer like a model class with the necessary arguments
+      ReservationMailer.booking_email(@reservation).deliver_now
+
+      flash[:success] = "Reservation succesfully booked. Please check your email for confirmation."
+      redirect_to @reservation
+    else
+      flash[:error] = @reservation.errors.full_messages.first
+      redirect_to listing
+    end # @reservation.save
+
   end # create
 
   def show
@@ -76,6 +98,6 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:listing_id)
+    params.require(:reservation).permit(:listing_id, :daterange)
   end
 end

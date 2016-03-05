@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :listings
-  resources :reservations, only: [:create, :show, :index, :destroy]
+  resources :reservations, only: [:new, :create, :show, :index, :destroy]
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]

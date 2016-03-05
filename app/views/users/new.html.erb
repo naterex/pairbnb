@@ -7,7 +7,7 @@
     <%= form_for @user do |form| %>
       <%= render partial: '/users/form', object: form %>
 
-      <%= form.button type: "submit", class: "btn btn-success" do %>
+      <%= button_tag type: "submit", class: "btn btn-success" do %>
         <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Sign up
       <% end %>
 

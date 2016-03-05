@@ -1,5 +1,4 @@
 class Authentication < ActiveRecord::Base
-  validates_presence_of :user_id
   validates_presence_of :uid
   validates_presence_of :token
   validates_presence_of :provider

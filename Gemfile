@@ -55,6 +55,9 @@ source 'https://rails-assets.org' do
 end
 gem 'sweet-alert-confirm'
 
+# automatically save the american date into DB format
+gem 'american_date'
+
 # asynchronous processing
 gem 'sidekiq', '~> 4.1'
 

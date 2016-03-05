@@ -23,6 +23,7 @@ class Reservation < ActiveRecord::Base
   def dates_available?(start_date, end_date)
     # find all dates between start/end dates
     @dates = (start_date..end_date).map(&:to_s)
+
     # remove last date since new booking can be made on same day as late date
     @dates.pop
 
