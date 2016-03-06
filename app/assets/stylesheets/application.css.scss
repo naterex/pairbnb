@@ -52,6 +52,10 @@ body {
   }
 }
 
+* {
+  font-size: 1.55rem;
+}
+
 /*
  * Navbar
 */
@@ -180,7 +184,12 @@ body {
           div.media-body {
             h4.media-heading {
               p {
-                font-size: 1.6rem;
+                font-size: 1.45rem;
+              }
+              .listing_title {
+                a {
+                  font-size: 1.85rem;
+                }
               }
             }
           }

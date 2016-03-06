@@ -25,25 +25,37 @@
       <p>Discover new, inspiring places close to home.</p>
       <div class="row">
         <div class="col-sm-4">
-          <%= image_tag("london.png", class:"img-responsive") %>
+          <%= link_to listing_index_path("london") do %>
+            <%= image_tag("london.png", class:"img-responsive") %>
+          <% end %>
         </div>
         <div class="col-sm-4">
-          <%= image_tag("ubud.png", class:"img-responsive") %>
+          <%= link_to listing_index_path("ubud") do %>
+            <%= image_tag("ubud.png", class:"img-responsive") %>
+          <% end %>
         </div>
         <div class="col-sm-4">
-          <%= image_tag("rome.png", class:"img-responsive") %>
+          <%= link_to listing_index_path("rome") do %>
+            <%= image_tag("rome.png", class:"img-responsive") %>
+          <% end %>
         </div>
       </div>
       <br>
       <div class="row hidden-xs">
         <div class="col-sm-4">
-          <%= image_tag("tokyo.png", class:"img-responsive") %>
+          <%= link_to listing_index_path("tokyo") do %>
+            <%= image_tag("tokyo.png", class:"img-responsive") %>
+          <% end %>
         </div>
         <div class="col-sm-4">
-          <%= image_tag("sydney.png", class:"img-responsive") %>
+          <%= link_to listing_index_path("sydney") do %>
+            <%= image_tag("sydney.png", class:"img-responsive") %>
+          <% end %>
         </div>
         <div class="col-sm-4">
-          <%= image_tag("bangkok.png", class:"img-responsive") %>
+          <%= link_to listing_index_path("bangkok") do %>
+            <%= image_tag("bangkok.png", class:"img-responsive") %>
+          <% end %>
         </div>
       </div>
     </center>

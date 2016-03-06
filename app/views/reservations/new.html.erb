@@ -36,7 +36,7 @@
         </div><!-- row -->
         <hr>
         <div class="price">
-          <h3>Total cost for </h3>
+          <h3>Total cost for <%= pluralize((@end_date.to_date - @start_date.to_date).to_i, 'night') %>: $<%= @listing.price * (@end_date.to_date - @start_date.to_date).to_i %></h3>
           <br>
         <strong>Payment method:</strong> Visa / Mastercard
         </div>

@@ -32,11 +32,13 @@
 
               <div class="media-body">
                 <br class="hidden-md hidden-lg">
-                <h4 class="media-heading">
+                <h3 class="media-heading">
                   <span class="label label-info pull-right">$<%= listing.price %> / night</span>
-                  <p><%= listing.city %>, <%= listing.country %></p>
-                  <%= link_to listing.title.first(60), listing_path(listing), data: { no_turbolink: true } %>
-                </h4>
+                  <small><%= listing.city %>, <%= listing.country %></small>
+                  <div class="clearfix"></div>
+
+                  <span class="listing_title"><%= link_to listing.title.first(60), listing_path(listing), data: { no_turbolink: true } %></span>
+                </h3>
 
                 <p>
                   <%= listing.room_type %>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="badge"><%= listing.bedrooms %></span> Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;<span class="badge"><%= listing.bathrooms %></span> Baths
