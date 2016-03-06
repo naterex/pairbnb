@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="page-header">
-        <h2><%= @index_title %></h2>
+        <h2><%= @index_title %> <small><span class= "label label-info"><%= @search_term %></small></span> </h2>
       </div>
       <!-- <p>A snippet I recently used to display homes for a local brokerage.  Focused more on images when accessed through mobile</p> -->
     </div><!-- col-md-12 -->
@@ -33,7 +33,7 @@
               <div class="media-body">
                 <br class="hidden-md hidden-lg">
                 <h4 class="media-heading">
-                  <span class="label label-primary pull-right">$<%= listing.price %> / night</span>
+                  <span class="label label-info pull-right">$<%= listing.price %> / night</span>
                   <p><%= listing.city %>, <%= listing.country %></p>
                   <%= link_to listing.title.first(60), listing_path(listing), data: { no_turbolink: true } %>
                 </h4>

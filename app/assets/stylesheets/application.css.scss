@@ -16,7 +16,19 @@
 */
 
 @import 'bootstrap-sprockets';
-@import 'bootstrap';
+
+// Import lumen variables
+@import "bootswatch/lumen/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+// body { padding-top: 60px; }
+
+// And finally bootswatch style itself
+@import "bootswatch/lumen/bootswatch";
+
 
 $red: #FF5A5F;
 $matt-red: #FC9396;
@@ -53,11 +65,16 @@ body {
       a:hover {
         color: $matt-red;
       }
+      .navbar-brand {
+        font-size: 2.05rem;
+        font-weight: bold;
+      }
     }
     .navbar-collapse {
       ul li {
         a {
           color: $red;
+          font-size: 1.55rem;
         }
         a:hover {
           color: $matt-red;
@@ -81,7 +98,8 @@ body {
   width: 100%;
   // position: absolute;
   // top:0;
-  // z-index: -100;
+  // z-index: -10;
+  margin-top: -1rem;
   text-align: center;
   .container {
     h1 {

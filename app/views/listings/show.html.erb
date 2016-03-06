@@ -27,9 +27,15 @@
         <br>
         <hr>
       <% end %>
-      <center>
-        <h2><%= @listing.title %></h2>
-      </center>
+      <!-- <center> -->
+        <div class="page-header">
+          <h2><%= @listing.title %>
+            <div class="pull-right">
+              <small><%= @listing.city %>, <%= @listing.country %></small>
+            </div>
+          </h2>
+        </div>
+      <!-- </center> -->
     </div><!-- row -->
 
     <!-- Slider -->

@@ -28,6 +28,7 @@ gem 'clearance'
 
 # bootstrap
 gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 
 # secure configure rails app
 gem "figaro"
