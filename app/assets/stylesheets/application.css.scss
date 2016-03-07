@@ -182,8 +182,8 @@ body {
             }
           }
           div.media-body {
-            h4.media-heading {
-              p {
+            h3.media-heading {
+              small {
                 font-size: 1.45rem;
               }
               .listing_title {
@@ -191,6 +191,9 @@ body {
                   font-size: 1.85rem;
                 }
               }
+            }
+            p.hidden-xs {
+              font-size: 1.45rem;
             }
           }
         }

@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :listings
-  get "/search/:search" => "listings#index", as: "listing_index"
 
   resources :reservations, only: [:new, :create, :show, :index, :destroy]
 

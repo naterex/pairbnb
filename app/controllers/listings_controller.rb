@@ -26,12 +26,8 @@ class ListingsController < ApplicationController
 
   def index
     if params[:search]
-      if params[:search] == ""
-        @index_title = "All Listings"
-      else
-        @index_title = "Search results for: "
-        @search_term = "'#{params[:search]}'"
-      end
+      @index_title = "search results for:"
+      @search_term = "'#{params[:search]}'"
 
       @listings = Listing.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 8)
     else

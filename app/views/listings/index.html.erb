@@ -3,12 +3,13 @@
   <div class="row">
     <div class="col-md-12">
       <div class="page-header">
-        <h2><%= @index_title %> <small><span class= "label label-info"><%= @search_term %></small></span> </h2>
+        <h2><%= @listings.count %>&nbsp;<%= @index_title %>&nbsp;<small><span class= "label label-info"><%= @search_term %></small></span> </h2>
       </div>
       <!-- <p>A snippet I recently used to display homes for a local brokerage.  Focused more on images when accessed through mobile</p> -->
     </div><!-- col-md-12 -->
   </div><!-- row -->
 </div>
+;&
 
 <div class="container" id="listings">
   <div class="row">
@@ -33,7 +34,7 @@
               <div class="media-body">
                 <br class="hidden-md hidden-lg">
                 <h3 class="media-heading">
-                  <span class="label label-info pull-right">$<%= listing.price %> / night</span>
+                  <span class="label label-info pull-right">$<%= listing.price %></span>
                   <small><%= listing.city %>, <%= listing.country %></small>
                   <div class="clearfix"></div>
 
