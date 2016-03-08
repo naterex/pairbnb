@@ -11,7 +11,7 @@
           <%= image_tag(@listing.photos[0].url(:carousel).to_s, class:"img-responsive") %>
         <% end %>
         <div class="page-header">
-        <h4><%= link_to @listing.title, listing_path(@listing), data: { no_turbolink: true } %></h4>
+          <h4><%= link_to @listing.title, listing_path(@listing), data: { no_turbolink: true } %></h4>
         </div>
         <%= @listing.about %>
       </div>
