@@ -43,7 +43,7 @@
               <% if @owner_viewing %>
                 <td><%= reservation.user.email %></td>
               <% else %>
-                <td><%= link_to reservation.listing.title, listing_path(reservation.listing) %></td>
+                <td><%= link_to reservation.listing.title, listing_path(reservation.listing), data: { no_turbolink: true } %></td>
               <% end %>
               <td><%= reservation.listing.city %>, <%= reservation.listing.country %></td>
               <td>

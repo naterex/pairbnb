@@ -48,16 +48,19 @@ class ReservationsController < ApplicationController
     @reservation = current_user.reservations.build(listing_id: reservation_params[:listing_id], start_date: params[:reservation][:start_date], end_date: params[:reservation][:end_date])
 
     if @reservation.save
+        # find all dates between start/end dates
         @reservation.dates = (@reservation.start_date..@reservation.end_date).map(&:to_s)
-        # created booked_dates table entries
+
+        # remove last date since new booking can be made on same day as late date
         @reservation.dates.pop
 
         @reservation.dates.each do |date|
+          # created booked_dates table entries
           @reservation.booked_dates.create(listing_id: reservation_params[:listing_id], date: date)
         end
 
-      # call the mailer like a model class with the necessary arguments
-      ReservationMailer.booking_email(@reservation).deliver_now
+      # call the job using activejob sidekiq
+      BookingEmailJob.perform_later(@reservation)
 
       flash[:success] = "Reservation succesfully booked. Please check your email for confirmation."
       redirect_to @reservation
@@ -85,7 +88,9 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    ReservationMailer.cancellation_email(@reservation.listing.title, @reservation.user, @reservation.listing.id).deliver_now
+    # call the job using sidekiq
+    CancellationEmailJob.perform_later(@reservation.listing.title, @reservation.user, @reservation.listing.id)
+
     @reservation.destroy
     flash[:success] = "Successfully cancelled reservation. Please check your email for confirmation."
     redirect_to reservations_path
