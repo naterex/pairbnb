@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ReservationJobTest < ActiveJob::TestCase
+class BookingEmailJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end
