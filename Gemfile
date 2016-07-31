@@ -39,7 +39,7 @@ gem 'omniauth-facebook'
 
 # image uploading
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-gem 'rmagick'
+gem 'rmagick', '2.14.0'
 gem 'fog-aws'
 
 # pagination
